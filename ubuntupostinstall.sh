@@ -5,7 +5,7 @@
 # GPL
 #
 # Syntaxe: # sudo ./ubuntupostinstall.sh
-VERSION="1.43"
+VERSION="1.44"
 
 #=============================================================================
 # Liste des applications à installer: A adapter a vos besoins
@@ -22,7 +22,7 @@ LISTE=$LISTE" iperf ifstat wireshark tshark arp-scan htop netspeed nmap netpipe-
 # Systeme
 LISTE=$LISTE" preload gloobus-preview gparted lm-sensors sensors-applet compizconfig-settings-manager drapes hardinfo fortune-mod libnotify-bin compiz-fusion-plugins-extra"
 # Web
-LISTE=$LISTE" pidgin pidgin-facebookchat pidgin-plugin-pack flashplugin-installer googleearth-package xchat"
+LISTE=$LISTE" pidgin pidgin-facebookchat pidgin-plugin-pack flashplugin-installer xchat googleearth-package lsb-core ttf-mscorefonts-installer"
 #=============================================================================
 
 # Test que le script est lance en root
