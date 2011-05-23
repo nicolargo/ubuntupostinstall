@@ -5,7 +5,7 @@
 # GPL
 #
 # Syntaxe: # sudo ./ubuntupostinstall.sh
-VERSION="1.45"
+VERSION="1.46"
 
 #=============================================================================
 # Liste des applications à installer: A adapter a vos besoins
@@ -16,7 +16,7 @@ LISTE=$LISTE" build-essential vim subversion git rabbitvcs-nautilus anjuta texta
 # Java: http://doc.ubuntu-fr.org/java
 LISTE=$LISTE" sun-java6-jre sun-java6-plugin sun-java6-fonts"
 # Multimedia
-LISTE=$LISTE" x264 ffmpeg2theora oggvideotools istanbul shotwell mplayer hugin nautilus-image-converter pavucontrol gimp gimp-save-for-web ogmrip transmageddon guvcview wavpack mppenc faac flac vorbis-tools faad lame nautilus-script-audio-convert cheese sound-juicer picard avidemux arista nautilus-arista"
+LISTE=$LISTE" x264 ffmpeg2theora oggvideotools istanbul shotwell mplayer hugin nautilus-image-converter pavucontrol gimp gimp-save-for-web ogmrip transmageddon guvcview wavpack mppenc faac flac vorbis-tools faad lame nautilus-script-audio-convert cheese sound-juicer picard avidemux arista nautilus-arista milkytracker"
 # Network
 LISTE=$LISTE" iperf ifstat wireshark tshark arp-scan htop netspeed nmap netpipe-tcp"
 # Systeme
