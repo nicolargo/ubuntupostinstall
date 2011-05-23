@@ -5,14 +5,14 @@
 # GPL
 #
 # Syntaxe: # sudo ./ubuntupostinstall.sh
-VERSION="1.44"
+VERSION="1.45"
 
 #=============================================================================
 # Liste des applications à installer: A adapter a vos besoins
 # Voir plus bas les applications necessitant un depot specifique
 LISTE=""
 # Developpement
-LISTE=$LISTE" build-essential vim subversion git rabbitvcs-nautilus anjuta"
+LISTE=$LISTE" build-essential vim subversion git rabbitvcs-nautilus anjuta textadept"
 # Java: http://doc.ubuntu-fr.org/java
 LISTE=$LISTE" sun-java6-jre sun-java6-plugin sun-java6-fonts"
 # Multimedia
@@ -86,7 +86,7 @@ LISTE=$LISTE" wine"
 # X264 / THEORA
 add-apt-repository ppa:nilarimogard/webupd8
 
-# VLC 
+# VLC
 add-apt-repository ppa:ferramroberto/vlc
 LISTE=$LISTE" vlc vlc-plugin-pulse"
 # VLMC
@@ -94,11 +94,11 @@ add-apt-repository ppa:webupd8team/vlmc
 LISTE=$LISTE" vlmc"
 
 # Banshee
-#add-apt-repository  ppa:banshee-team/banshee-daily 
+#add-apt-repository  ppa:banshee-team/banshee-daily
 #LISTE=$LISTE" banshee banshee-extension-soundmenu"
 
 # Clementine
-#add-apt-repository  ppa:me-davidsansome/clementine-dev 
+#add-apt-repository  ppa:me-davidsansome/clementine-dev
 #LISTE=$LISTE" clementine"
 
 # GUVCView
@@ -155,23 +155,23 @@ then
   apt-key adv --recv-keys --keyserver pgp.mit.edu 46D7E7CF
 fi
 
-# Depot partenaires 
+# Depot partenaires
 egrep '^deb\ .*partner' /etc/apt/sources.list > /dev/null
 if [ $? -ne 0 ]
 then
 	echo "## 'partner' repository"
 	echo -e "deb http://archive.canonical.com/ubuntu $UBUNTUVERSION partner\n" >> /etc/apt/sources.list
 	echo -e "deb-src http://archive.canonical.com/ubuntu $UBUNTUVERSION partner\n" >> /etc/apt/sources.list
-fi	
+fi
 
 # WebUpd8 (lots of fresh software)
 add-apt-repository ppa:nilarimogard/webupd8
 
-# Nautilus elementary 
+# Nautilus elementary
 add-apt-repository ppa:am-monkeyd/nautilus-elementary-ppa
 
 # Elementary art
-#add-apt-repository ppa:elementaryart 
+#add-apt-repository ppa:elementaryart
 #LISTE=$LISTE" elementary-theme elementary-icon-theme"
 
 # Spotify
@@ -216,14 +216,14 @@ LISTE=$LISTE" handbrake-gtk"
 
 # Sysmonitor
 add-apt-repository ppa:alexeftimie/ppa
-LISTE=$LISTE" indicator-sysmonitor"
+LISTE=$LISTE" indicator-sysmonitor dstat"
 
 # Mise a jour de la liste des depots
 #-----------------------------------
 
 echo "Mise a jour de la liste des depots"
 
-# Update 
+# Update
 aptitude update 2>&1 | grep NO_PUBKEY | perl -pwe 's#^.+NO_PUBKEY (.+)$#$1#' | xargs apt-key adv --recv-keys --keyserver keyserver.ubuntu.com
 
 # Upgrade
@@ -278,6 +278,9 @@ mv *hotot.png /usr/share/hotot/ui/imgs/
 rm 133268-hotot.zip
 cd -
 
+# Ajout info system dans le panel
+
+
 # Sensors detect
 sensors-detect
 
@@ -294,10 +297,6 @@ echo "1) Ajouter le profil audio MP3 HQ: gnome-audio-profiles-properties"
 echo ">> audio/x-raw-int,rate=44100,channels=2 ! lamemp3enc name=enc target=1 bitrate=320 cbr=1 ! id3v2mux"
 echo
 echo "2) Theme Gnome (Système/Préference/Apparence): Equinox Evolution Dawn"
-echo 
-echo "3) Ajout info system dans le panel"
-echo ">> http://www.webupd8.org/2011/05/how-to-display-network-upload-download.html"
-echo ">> En prenant sysmon à l'URL suivante: http://svn.nicolargo.com/ubuntupostinstall/trunk/sysmon"
 echo
 echo "========================================================================"
 
