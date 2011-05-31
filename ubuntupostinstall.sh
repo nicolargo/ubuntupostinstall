@@ -5,7 +5,7 @@
 # GPL
 #
 # Syntaxe: # sudo ./ubuntupostinstall.sh
-VERSION="1.46"
+VERSION="1.47"
 
 #=============================================================================
 # Liste des applications à installer: A adapter a vos besoins
@@ -31,6 +31,7 @@ if [ $EUID -ne 0 ]; then
   exit 1
 fi
 
+HOME_PATH=`grep $USERNAME /etc/passwd | awk -F':' '{ print $6 }'`
 
 # On commence par installer aptitude
 #-----------------------------------
@@ -263,12 +264,12 @@ gconftool-2 --type Boolean --set /desktop/gnome/interface/menus_have_icons True
 gsettings set com.canonical.Unity.Panel systray-whitelist "['all']"
 
 # Custom .bashrc
-cat >> ~/.bashrc << EOF
+cat >> $HOME_PATH/.bashrc << EOF
 alias alert_helper='history|tail -n1|sed -e "s/^\s*[0-9]\+\s*//" -e "s/;\s*alert$//"'
 alias alert='notify-send -i /usr/share/icons/gnome/32x32/apps/gnome-terminal.png "[$?] $(alert_helper)"'
 export MOZ_DISABLE_PANGO=1
 EOF
-source ~/.bashrc
+source $HOME_PATH/.bashrc
 
 # Hotot mono tray icon
 cd ~
