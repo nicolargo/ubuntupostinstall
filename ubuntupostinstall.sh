@@ -1,11 +1,11 @@
 #!/bin/bash
 # Mon script de post installation Ubuntu
 #
-# Nicolargo - 05/2011
+# Nicolargo - 06/2011
 # GPL
 #
 # Syntaxe: # sudo ./ubuntupostinstall.sh
-VERSION="1.47"
+VERSION="1.48"
 
 #=============================================================================
 # Liste des applications à installer: A adapter a vos besoins
@@ -53,6 +53,10 @@ echo "Ajout des depots pour Ubuntu $UBUNTUVERSION"
 #add-apt-repository "deb http://apt.spideroak.com/debian/ stable non-free"
 #wget -q http://apt.spideroak.com/spideroak-apt-pubkey.asc -O- | apt-key add -
 #LISTE=$LISTE" spideroak"
+
+# Restricted extra
+# The Ubuntu Restricted Extras will install Adobe Flash Player, Java Runtime Environment (JRE) (sun-java-jre) with Firefox plug-ins (icedtea), a set of Microsoft Fonts (msttcorefonts), multimedia codecs (w32codecs or w64codecs), mp3-compatible encoding (lame), FFMpeg, extra Gstreamer codecs, the package for DVD decoding (libdvdread4, but see below for info on libdvdcss2), the unrar archiver, odbc, and cabextract. It also installs multiple "stripped" codecs and avutils (libavcodec-unstripped-52 and libavutil-unstripped-49).
+LISTE=$LISTE" ubuntu-restricted-extras"
 
 # Dropbox + pre-requirement Dropbox scripts
 add-apt-repository "deb http://www.getdropbox.com/static/ubuntu $UBUNTUVERSION main"
