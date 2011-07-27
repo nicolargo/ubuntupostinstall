@@ -7,7 +7,7 @@
 # GPL
 #
 # Syntaxe: # sudo ./nginxautoinstall.sh
-VERSION="1.0"
+VERSION="1.1"
 
 ##############################
 # Debut de l'installation
@@ -34,8 +34,8 @@ aptitude install libcache-memcached-perl php5-memcache memcached
 
 # Download the default configuration file
 # Nginx + default site
-wget http://svn.nicolargo.com/debianpostinstall/trunk/default-site
-cp default-site /etc/nginx/sites-available/
+wget --no-check-certificate https://raw.github.com/nicolargo/debianpostinstall/master/default-site
+mv default-site /etc/nginx/sites-available/
 ln -s /etc/nginx/sites-available/default-site /etc/nginx/sites-enabled/default-site 
 
 # Start PHP5-FPM and NGinx
