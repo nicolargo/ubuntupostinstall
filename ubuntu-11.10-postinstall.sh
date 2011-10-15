@@ -13,18 +13,16 @@ VERSION="1.0"
 LISTE=""
 # Developpement
 LISTE=$LISTE" build-essential vim subversion git git-core rabbitvcs-nautilus anjuta textadept"
-# Java: http://doc.ubuntu-fr.org/java
-LISTE=$LISTE" sun-java6-jre sun-java6-plugin sun-java6-fonts"
 # Multimedia
-LISTE=$LISTE" vlc x264 ffmpeg2theora oggvideotools istanbul shotwell mplayer hugin nautilus-image-converter pavucontrol gimp gimp-save-for-web ogmrip transmageddon guvcview wavpack mppenc faac flac vorbis-tools faad lame nautilus-script-audio-convert cheese sound-juicer picard avidemux arista nautilus-arista milkytracker"
+LISTE=$LISTE" vlc x264 ffmpeg2theora oggvideotools istanbul shotwell mplayer hugin nautilus-image-converter pavucontrol gimp gimp-save-for-web ogmrip transmageddon guvcview wavpack mppenc faac flac vorbis-tools faad lame nautilus-script-audio-convert cheese sound-juicer picard arista nautilus-arista milkytracker"
 # Network
 LISTE=$LISTE" iperf ifstat wireshark tshark arp-scan htop netspeed nmap netpipe-tcp"
 # Systeme
-LISTE=$LISTE" preload gloobus-preview gparted lm-sensors sensors-applet compizconfig-settings-manager drapes hardinfo fortune-mod libnotify-bin compiz-fusion-plugins-extra"
+LISTE=$LISTE" preload gloobus-preview gparted lm-sensors compizconfig-settings-manager hardinfo fortune-mod libnotify-bin compiz-fusion-plugins-extra"
 # Web
 LISTE=$LISTE" pidgin pidgin-facebookchat pidgin-plugin-pack flashplugin-installer xchat googleearth-package lsb-core ttf-mscorefonts-installer"
 # Gnome Shell (go away Unity...)
-LISTE=$LISTE" gnome-shell gnome-tweal-tool gnome-documents gnome-shell-extensions-common gnome-shell-extensions-alternate-tab gnome-shell-extensions-alternative-status-menu gnome-shell-extensions-user-theme gnome-tweak-tool gnome-shell-extensions-workspace-indicator  gnome-shell-extensions-apps-menu gnome-shell-extensions-drive-menu gnome-shell-extensions-system-monitor gnome-shell-extensions-places-menu gnome-shell-extensions-dock gnome-shell-extensions-native-window-placement gnome-shell-extensions-gajim gnome-shell-extensions-xrandr-indicator gnome-shell-extensions-windows-navigator gnome-shell-extensions-auto-move-windows"
+LISTE=$LISTE" gnome-shell gnome-tweak-tool gnome-documents gnome-shell-extensions-common gnome-shell-extensions-alternate-tab gnome-shell-extensions-alternative-status-menu gnome-shell-extensions-user-theme gnome-tweak-tool gnome-shell-extensions-workspace-indicator  gnome-shell-extensions-apps-menu gnome-shell-extensions-drive-menu gnome-shell-extensions-system-monitor gnome-shell-extensions-places-menu gnome-shell-extensions-dock gnome-shell-extensions-native-window-placement gnome-shell-extensions-gajim gnome-shell-extensions-xrandr-indicator gnome-shell-extensions-windows-navigator gnome-shell-extensions-auto-move-windows"
 
 #=============================================================================
 
@@ -33,13 +31,6 @@ if [ $EUID -ne 0 ]; then
   echo "Le script doit être lancé en root: # sudo $0" 1>&2
   exit 1
 fi
-
-HOME_PATH=`grep $USERNAME /etc/passwd | awk -F':' '{ print $6 }'`
-
-# On commence par installer aptitude
-#-----------------------------------
-
-apt-get -y install aptitude
 
 # Ajout des depots
 #-----------------
@@ -68,7 +59,6 @@ LISTE=$LISTE" ubuntu-restricted-extras"
 
 # GStreamer, daily build
 add-apt-repository ppa:gstreamer-developers
-LISTE=$LISTE" "`aptitude -w 2000 search gstreamer | cut -b5-60 | xargs -eol`
 
 # Shutter, outil de capture d'ecran
 add-apt-repository ppa:shutter
@@ -89,10 +79,6 @@ LISTE=$LISTE" ubuntu-tweak"
 # Hotot
 add-apt-repository ppa:hotot-team
 LISTE=$LISTE" hotot"
-
-# Equinox Themes and Faenza Icon Theme
-add-apt-repository ppa:tiheum/equinox
-LISTE=$LISTE" gtk2-engines-equinox equinox-theme faenza-icon-theme faenza-extras faenza-icon-mono"
 
 # Terminator
 add-apt-repository ppa:gnome-terminator/ppa
@@ -138,10 +124,6 @@ LISTE=$LISTE" virtualbox-4.1 dkms"
 add-apt-repository ppa:libreoffice/ppa
 LISTE=$LISTE" libreoffice libreoffice-gnome"
 
-# Handbrake
-add-apt-repository ppa:stebbins/handbrake-releases
-LISTE=$LISTE" handbrake-gtk"
-
 # WebUpd8 Gnome3 plugins
 add-apt-repository ppa:webupd8team/gnome3
 
@@ -149,23 +131,21 @@ add-apt-repository ppa:webupd8team/gnome3
 add-apt-repository ppa:webupd8team/jupiter
 LISTE=$LISTE" jupiter"
 
-# Mise a jour de la liste des depots
-#-----------------------------------
+# Mise a jour 
+#------------
 
 echo "Mise a jour de la liste des depots"
+apt-get update
 
-# Update
-aptitude update 2>&1 | grep NO_PUBKEY | perl -pwe 's#^.+NO_PUBKEY (.+)$#$1#' | xargs apt-key adv --recv-keys --keyserver keyserver.ubuntu.com
-
-# Upgrade
-aptitude dist-upgrade
+echo "Mise a jour du systeme"
+apt-get upgrade
 
 # Installations additionnelles
 #-----------------------------
 
 echo "Installation des logiciels suivants: $LISTE"
 
-aptitude -y install $LISTE
+apt-get install $LISTE
 
 # Tweak Gnome shell to display icons in the top bar
 git clone https://github.com/rcmorano/gnome-shell-gnome2-notifications.git
@@ -175,8 +155,13 @@ rm -rf gnome-shell-gnome2-notifications
 # Install Gnome Shell themes
 wget http://www.deviantart.com/download/255097456/gnome_shell___faience_by_tiheum-d47vmgg.zip
 unzip gnome_shell___faience_by_tiheum-d47vmgg.zip
-sudo mv Faience $HOME_PATH/.themes
+mkdir $HOME/.themes
+mv Faience $HOME/.themes
 rm -rf gnome_shell___faience_by_tiheum-*.zip
+chown -R $USERNAME:$USERNAME $HOME/.themes
+
+# Get the minimiez and maximize button back in Gnome Shell
+gconftool-2 -s -t string /desktop/gnome/shell/windows/button_layout ":minimize,maximize,close"
 
 # GoogleEarth (besoin de generer package)
 make-googleearth-package --force
@@ -201,12 +186,12 @@ strfile sciences sciences.dat
 cd -
 
 # Custom .bashrc
-cat >> $HOME_PATH/.bashrc << EOF
+cat >> $HOME/.bashrc << EOF
 alias alert_helper='history|tail -n1|sed -e "s/^\s*[0-9]\+\s*//" -e "s/;\s*alert$//"'
 alias alert='notify-send -i /usr/share/icons/gnome/32x32/apps/gnome-terminal.png "[$?] $(alert_helper)"'
 export MOZ_DISABLE_PANGO=1
 EOF
-source $HOME_PATH/.bashrc
+source $HOME/.bashrc
 
 # Sensors detect
 sensors-detect

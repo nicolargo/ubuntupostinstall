@@ -1,1 +1,13 @@
-README.ubuntupostinstall
+====================
+ubuntupostinstall.sh
+====================
+
+Description:
+Ce script est à lancer après une nouvelle installation d'Ubuntu Desktop sur un PC.
+Il va installer puis configurer des logiciels que je trouve manquant à cette distribution GNU/Linux.
+Il suffit d'éditer le script pour en voir la liste.
+
+Syntaxe:
+# sudo ./ubuntupostinstall.sh
+
+
