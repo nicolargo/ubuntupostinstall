@@ -145,6 +145,10 @@ LISTE=$LISTE" handbrake-gtk"
 # WebUpd8 Gnome3 plugins
 add-apt-repository ppa:webupd8team/gnome3
 
+# Jupiter (only for Laptop)
+add-apt-repository ppa:webupd8team/jupiter
+LISTE=$LISTE" jupiter"
+
 # Mise a jour de la liste des depots
 #-----------------------------------
 
