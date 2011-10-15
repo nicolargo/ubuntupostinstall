@@ -159,6 +159,7 @@ mkdir $HOME/.themes
 mv Faience $HOME/.themes
 rm -rf gnome_shell___faience_by_tiheum-*.zip
 chown -R $USERNAME:$USERNAME $HOME/.themes
+apt-get install faenza-icon-theme faenza-icons-mono
 
 # Get the minimiez and maximize button back in Gnome Shell
 gconftool-2 -s -t string /desktop/gnome/shell/windows/button_layout ":minimize,maximize,close"
