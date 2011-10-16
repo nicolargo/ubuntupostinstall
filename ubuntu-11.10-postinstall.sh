@@ -172,11 +172,18 @@ rm -rf faience_icon_theme_by_tiheum-*.zip
 chown -R $USERNAME:$USERNAME $HOME/.icons
 
 # Install Gnome Shell themes
+mkdir $HOME/.themes
+# -- Faience
 wget http://www.deviantart.com/download/255097456/gnome_shell___faience_by_tiheum-d47vmgg.zip
 unzip gnome_shell___faience_by_tiheum-d47vmgg.zip
-mkdir $HOME/.themes
 mv Faience $HOME/.themes
 rm -rf gnome_shell___faience_by_tiheum-*.zip
+# -- Nord
+wget http://www.deviantart.com/download/214295138/gnome_shell__nord_by_0rax0-d3jl36q.zip
+unzip gnome_shell__nord_by_0rax0-d3jl36q.zip
+mv Nord ~/.themes
+rm -rf nord_by_0rax0-*.zip
+# Set perm for all the themes
 chown -R $USERNAME:$USERNAME $HOME/.themes
 
 # Set the theme shell and icons 
