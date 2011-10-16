@@ -162,8 +162,16 @@ git clone https://github.com/rcmorano/gnome-shell-gnome2-notifications.git
 cp -r gnome-shell-gnome2-notifications/gnome-shell-gnome2-notifications@emergya.com /usr/share/gnome-shell/extensions/
 rm -rf gnome-shell-gnome2-notifications
 
-# Install Gnome Shell themes
+# Install icons
 apt-get install faenza-icon-theme faenza-icons-mono
+wget http://www.deviantart.com/download/255099649/faience_icon_theme_by_tiheum-d47vo5d.zip
+mkdir $HOME/.themes
+unzip faience_icon_theme_by_tiheum-d47vo5d.zip
+mv Faience* $HOME/.icons/
+rm -rf faience_icon_theme_by_tiheum-*.zip
+chown -R $USERNAME:$USERNAME $HOME/.icons
+
+# Install Gnome Shell themes
 wget http://www.deviantart.com/download/255097456/gnome_shell___faience_by_tiheum-d47vmgg.zip
 unzip gnome_shell___faience_by_tiheum-d47vmgg.zip
 mkdir $HOME/.themes
