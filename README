@@ -7,7 +7,9 @@ Ce script est à lancer après une nouvelle installation d'Ubuntu Desktop sur un
 Il va installer puis configurer des logiciels que je trouve manquant à cette distribution GNU/Linux.
 Il suffit d'éditer le script pour en voir la liste.
 
-Syntaxe:
-# sudo ./ubuntupostinstall.sh
+Syntaxe (for Ubuntu 11.10 Oneiric / Replace Unity by Gnome Shell):
+# sudo ./ubuntu-11.10-postinstall.sh
 
+Syntaxe (for Ubuntu 11.04 Natty):
+# sudo ./ubuntu-11.04-postinstall.sh
 
