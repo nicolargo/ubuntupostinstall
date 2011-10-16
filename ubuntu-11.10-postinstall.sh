@@ -197,7 +197,8 @@ gconftool-2 -s -t string /desktop/gnome/shell/windows/button_layout ":minimize,m
 gconftool-2 --recursive-unset /apps/metacity/global_keybindings
 
 # Gnome-shell is the default shell
-sed -i ‘s/user-session.*/user-session=Gnome/’ /etc/lightdm/lightdm.conf
+# sed -i ‘s/user-session.*/user-session=Gnome/’ /etc/lightdm/lightdm.conf
+/usr/lib/lightdm/lightdm-set-defaults -s gnome-shell
 
 # Others
 ########
