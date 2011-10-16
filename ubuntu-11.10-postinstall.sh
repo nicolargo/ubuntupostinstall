@@ -5,7 +5,12 @@
 # GPL
 #
 # Syntaxe: # sudo ./ubuntupostinstall.sh
-VERSION="1.0"
+#
+# Release notes:
+# 1.1: Add tweak for Gnome Shell (thanks to Makino)
+# 1.0: First release version
+#
+VERSION="1.1"
 
 #=============================================================================
 # Liste des applications à installer: A adapter a vos besoins
@@ -35,7 +40,6 @@ fi
 # Ajout des depots
 #-----------------
 
-#UBUNTUVERSION=`lsb_release -c | awk '{print$2}'`
 UBUNTUVERSION=`lsb_release -cs`
 echo "Ajout des depots pour Ubuntu $UBUNTUVERSION"
 
@@ -147,22 +151,41 @@ echo "Installation des logiciels suivants: $LISTE"
 
 apt-get install $LISTE
 
+# Gnome-shell
+#############
+
+THEME_SHELL=Faience
+THEME_ICONES=Faience-Dark
+
 # Tweak Gnome shell to display icons in the top bar
 git clone https://github.com/rcmorano/gnome-shell-gnome2-notifications.git
 cp -r gnome-shell-gnome2-notifications/gnome-shell-gnome2-notifications@emergya.com /usr/share/gnome-shell/extensions/
 rm -rf gnome-shell-gnome2-notifications
 
 # Install Gnome Shell themes
+apt-get install faenza-icon-theme faenza-icons-mono
 wget http://www.deviantart.com/download/255097456/gnome_shell___faience_by_tiheum-d47vmgg.zip
 unzip gnome_shell___faience_by_tiheum-d47vmgg.zip
 mkdir $HOME/.themes
 mv Faience $HOME/.themes
 rm -rf gnome_shell___faience_by_tiheum-*.zip
 chown -R $USERNAME:$USERNAME $HOME/.themes
-apt-get install faenza-icon-theme faenza-icons-mono
 
-# Get the minimiez and maximize button back in Gnome Shell
+# Set the theme shell and icons 
+gsettings set org.gnome.shell.extensions.user-theme name $THEME_SHELL
+gsettings set org.gnome.desktop.interface icon-theme $THEME_ICONES
+
+# Get the minimize and maximize button back in Gnome Shell
 gconftool-2 -s -t string /desktop/gnome/shell/windows/button_layout ":minimize,maximize,close"
+
+# ALT-F2 get back to me 
+gconftool-2 --recursive-unset /apps/metacity/global_keybindings
+
+# Gnome-shell is the default shell
+sed -i ‘s/user-session.*/user-session=Gnome/’ /etc/lightdm/lightdm.conf
+
+# Others
+########
 
 # GoogleEarth (besoin de generer package)
 make-googleearth-package --force
@@ -204,12 +227,13 @@ echo "========================================================================"
 echo
 echo "Liste des logiciels installés: $LISTE"
 echo
-echo ">>> Dans LightDM choisir Gnome (aka Gnome Shell) comme gestionnaire"
-echo ">>> Lancer l'utilitaire Gnome Tweak Tool"
-echo ">>> Configurer votre bureau comme bon vous semble"
-echo ">>> Enjoy..."
-echo
 echo "========================================================================"
+echo
+echo "Le script doit relancer votre session pour finaliser l'installation."
+echo "Assurez-vous d’avoir fermé tous vos travaux en cours avant de continuer."
+echo "Appuyer sur la touche ENTER pour relancer votre session"
+read ANSWER
+service lightdm restart
 
 # Fin du script
 #---------------
