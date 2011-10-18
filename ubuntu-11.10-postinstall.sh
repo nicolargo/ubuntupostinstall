@@ -23,7 +23,7 @@ LISTE=$LISTE" vlc x264 ffmpeg2theora oggvideotools istanbul shotwell mplayer hug
 # Network
 LISTE=$LISTE" iperf ifstat wireshark tshark arp-scan htop netspeed nmap netpipe-tcp"
 # Systeme
-LISTE=$LISTE" preload gloobus-preview gparted lm-sensors compizconfig-settings-manager hardinfo fortune-mod libnotify-bin compiz-fusion-plugins-extra"
+LISTE=$LISTE" preload gparted lm-sensors compizconfig-settings-manager hardinfo fortune-mod libnotify-bin compiz-fusion-plugins-extra"
 # Web
 LISTE=$LISTE" pidgin pidgin-facebookchat pidgin-plugin-pack flashplugin-installer xchat googleearth-package lsb-core ttf-mscorefonts-installer"
 # Gnome Shell (go away Unity...)
