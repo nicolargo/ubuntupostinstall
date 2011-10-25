@@ -10,7 +10,7 @@
 # 1.1: Add tweak for Gnome Shell (thanks to Makino)
 # 1.0: First release version
 #
-VERSION="1.1"
+VERSION="1.2"
 
 #=============================================================================
 # Liste des applications à installer: A adapter a vos besoins
@@ -27,7 +27,7 @@ LISTE=$LISTE" preload gparted lm-sensors compizconfig-settings-manager hardinfo 
 # Web
 LISTE=$LISTE" pidgin pidgin-facebookchat pidgin-plugin-pack flashplugin-installer xchat googleearth-package lsb-core ttf-mscorefonts-installer"
 # Gnome Shell (go away Unity...)
-LISTE=$LISTE" gnome-shell gnome-tweak-tool gnome-documents gnome-shell-extensions-common gnome-shell-extensions-alternate-tab gnome-shell-extensions-alternative-status-menu gnome-shell-extensions-user-theme gnome-tweak-tool gnome-shell-extensions-workspace-indicator  gnome-shell-extensions-apps-menu gnome-shell-extensions-drive-menu gnome-shell-extensions-system-monitor gnome-shell-extensions-places-menu gnome-shell-extensions-dock gnome-shell-extensions-native-window-placement gnome-shell-extensions-gajim gnome-shell-extensions-xrandr-indicator gnome-shell-extensions-windows-navigator gnome-shell-extensions-auto-move-windows"
+LISTE=$LISTE" gnome-shell gnome-tweak-tool gnome-documents "
 
 #=============================================================================
 
@@ -151,18 +151,21 @@ echo "Installation des logiciels suivants: $LISTE"
 
 apt-get install $LISTE
 
-# Gnome-shell
+# Gnome Shell
 #############
 
 THEME_SHELL=Faience
 THEME_ICONES=Faience-Dark
 
-# Tweak Gnome shell to display icons in the top bar
+# Gnome Shell Extensions
+apt-get install `apt-cache search gnome-shell-extension | awk '{ print $1 }' | xargs`
+
+# Gnome Shell Tweak Gnome shell to display icons in the top bar
 git clone https://github.com/rcmorano/gnome-shell-gnome2-notifications.git
 cp -r gnome-shell-gnome2-notifications/gnome-shell-gnome2-notifications@emergya.com /usr/share/gnome-shell/extensions/
 rm -rf gnome-shell-gnome2-notifications
 
-# Install icons
+# Gnome Shell Install icons
 apt-get install faenza-icon-theme faenza-icons-mono
 wget http://www.deviantart.com/download/255099649/faience_icon_theme_by_tiheum-d47vo5d.zip
 mkdir $HOME/.themes
@@ -171,7 +174,7 @@ mv Faience* $HOME/.icons/
 rm -rf faience_icon_theme_by_tiheum-*.zip
 chown -R $USERNAME:$USERNAME $HOME/.icons
 
-# Install Gnome Shell themes
+# Gnome Shell themes
 mkdir $HOME/.themes
 # -- Faience
 wget http://www.deviantart.com/download/255097456/gnome_shell___faience_by_tiheum-d47vmgg.zip
