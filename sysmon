@@ -1,0 +1,65 @@
+#!/bin/bash
+
+#settings:
+netspeed=true
+ram=true
+cpu=true
+#-------------------------------------------------------
+
+
+#---------------- initialize ---------------------------
+rm /tmp/.sysmon > /dev/null 2>&1
+dstat --net --mem --cpu --output=/tmp/.sysmon 1 1 > /dev/null 2>&1
+
+#----------- up/down speed -----------------------------
+if [ $netspeed = true ]; then
+
+upspeed=$(echo $(cat /tmp/.sysmon | tail -1 | cut -d ',' -f2)/1024*8 | bc)
+
+upkbmb=$(if [ $upspeed -gt 1024 ]; then 
+		up1=$(echo $(cat /tmp/.sysmon | tail -1 | cut -d ',' -f2)/1024/1024 | bc -l)
+		echo $up1 | head -c 4
+	else 
+		echo $upspeed | head -c 3
+	fi)
+
+downspeed=$(echo $(cat /tmp/.sysmon | tail -1 | cut -d ',' -f1)/1024*8 | bc)
+
+downkbmb=$(if [ $downspeed -gt 1024 ]; then 
+		down1=$(echo $(cat /tmp/.sysmon | tail -1 | cut -d ',' -f1)/1024/1024*8 | bc -l)
+		echo $down1 | head -c 4
+	else 
+		echo $downspeed | head -c 3
+	fi)
+#---------------- up/down speed unit --------------------
+upunit=$(if [ $upspeed -gt 1024 ]; then echo "Mb/s"; else echo "Kb/s"; fi)
+downunit=$(if [ $downspeed -gt 1024 ]; then echo "Mb/s"; else echo "Kb/s"; fi)
+
+fi
+
+
+
+#------------------- CPU % used -------------------------
+if [ $cpu = true ]; then
+
+cpufree=$(cat /tmp/.sysmon | tail -1 | cut -d ',' -f9)
+cpuused=$(echo 100-$cpufree | bc | sed -e 's/\..*//')
+
+fi
+
+
+
+#------------------- RAM % used --------------------------
+if [ $ram = true ]; then
+
+memused=$(free -m | grep buffers/cache | tr -s ' ' | cut -d' ' -f 3)
+memfree=$(free -m | grep buffers/cache | tr -s ' ' | cut -d' ' -f 4)
+memtotal=$(echo $memused+$memfree | bc -l)
+
+memusedpercent=$(echo 100-100*$memfree/$memtotal | bc)
+
+fi
+
+
+#------------------ The Indicator Sysmonitor actual output -
+echo $(if [ $ram = true ]; then echo Mem: $memusedpercent% \|; fi) $(if [ $cpu = true ]; then echo CPU: $cpuused% \|; fi) $(if [ $netspeed = true ]; then echo ↑ $upkbmb $upunit  ↓ $downkbmb $downunit; fi)
