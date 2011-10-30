@@ -7,10 +7,10 @@
 # Syntaxe: # sudo ./ubuntupostinstall.sh
 #
 # Release notes:
-# 1.1: Add tweak for Gnome Shell (thanks to Makino)
+# 1.2: Add tweak for Gnome Shell (thanks to Makino)
 # 1.0: First release version
 #
-VERSION="1.2"
+VERSION="1.21"
 
 #=============================================================================
 # Liste des applications à installer: A adapter a vos besoins
@@ -25,7 +25,7 @@ LISTE=$LISTE" iperf ifstat wireshark tshark arp-scan htop netspeed nmap netpipe-
 # Systeme
 LISTE=$LISTE" preload gparted lm-sensors compizconfig-settings-manager hardinfo fortune-mod libnotify-bin compiz-fusion-plugins-extra"
 # Web
-LISTE=$LISTE" pidgin pidgin-facebookchat pidgin-plugin-pack flashplugin-installer xchat googleearth-package lsb-core ttf-mscorefonts-installer"
+LISTE=$LISTE" pidgin pidgin-facebookchat pidgin-plugin-pack flashplugin-downloader xchat googleearth-package lsb-core ttf-mscorefonts-installer"
 # Gnome Shell (go away Unity...)
 LISTE=$LISTE" gnome-shell gnome-tweak-tool gnome-documents "
 
