@@ -10,14 +10,14 @@
 # 1.2: Add tweak for Gnome Shell (thanks to Makino)
 # 1.0: First release version
 #
-VERSION="1.21"
+VERSION="1.22"
 
 #=============================================================================
 # Liste des applications à installer: A adapter a vos besoins
 # Voir plus bas les applications necessitant un depot specifique
 LISTE=""
 # Developpement
-LISTE=$LISTE" build-essential vim subversion git git-core rabbitvcs-nautilus anjuta textadept"
+LISTE=$LISTE" build-essential vim subversion git git-core rabbitvcs-nautilus anjuta textadept geany"
 # Multimedia
 LISTE=$LISTE" vlc x264 ffmpeg2theora oggvideotools istanbul shotwell mplayer hugin nautilus-image-converter pavucontrol gimp gimp-save-for-web ogmrip transmageddon guvcview wavpack mppenc faac flac vorbis-tools faad lame nautilus-script-audio-convert cheese sound-juicer picard arista nautilus-arista milkytracker"
 # Network
@@ -134,6 +134,7 @@ add-apt-repository ppa:webupd8team/gnome3
 # Jupiter (only for Laptop)
 add-apt-repository ppa:webupd8team/jupiter
 LISTE=$LISTE" jupiter"
+
 
 # Mise a jour 
 #------------
