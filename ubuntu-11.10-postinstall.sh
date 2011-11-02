@@ -10,7 +10,7 @@
 # 1.2: Add tweak for Gnome Shell (thanks to Makino)
 # 1.0: First release version
 #
-VERSION="1.23"
+VERSION="1.24"
 
 #=============================================================================
 # Liste des applications à installer: A adapter a vos besoins
@@ -124,10 +124,6 @@ then
 fi
 LISTE=$LISTE" virtualbox-4.1 dkms"
 
-# LibreOffice
-add-apt-repository ppa:libreoffice/ppa
-LISTE=$LISTE" libreoffice libreoffice-gnome"
-
 # WebUpd8 Gnome3 plugins
 add-apt-repository ppa:webupd8team/gnome3
 
@@ -207,6 +203,9 @@ gconftool-2 --recursive-unset /apps/metacity/global_keybindings
 # Others
 ########
 
+# Conky theme
+wget -O $HOME/.conkyrc https://raw.github.com/nicolargo/ubuntupostinstall/master/conkyrc
+
 # GoogleEarth (besoin de generer package)
 make-googleearth-package --force
 sudo dpkg -i GoogleEarth*.deb
@@ -242,6 +241,9 @@ sensors-detect
 
 # Restart Nautilus
 nautilus -q
+
+# Set home right
+chown -R $USERNAME:$USERNAME $HOME
 
 echo "========================================================================"
 echo
