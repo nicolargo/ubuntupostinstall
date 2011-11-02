@@ -10,7 +10,7 @@
 # 1.2: Add tweak for Gnome Shell (thanks to Makino)
 # 1.0: First release version
 #
-VERSION="1.22"
+VERSION="1.23"
 
 #=============================================================================
 # Liste des applications à installer: A adapter a vos besoins
@@ -27,7 +27,7 @@ LISTE=$LISTE" preload gparted lm-sensors compizconfig-settings-manager hardinfo 
 # Web
 LISTE=$LISTE" pidgin pidgin-facebookchat pidgin-plugin-pack flashplugin-downloader xchat googleearth-package lsb-core ttf-mscorefonts-installer"
 # Gnome Shell (go away Unity...)
-LISTE=$LISTE" gnome-shell gnome-tweak-tool gnome-documents "
+LISTE=$LISTE" gnome-shell gnome-tweak-tool gnome-documents conky-all ttf-ubuntu-font-family"
 
 #=============================================================================
 
