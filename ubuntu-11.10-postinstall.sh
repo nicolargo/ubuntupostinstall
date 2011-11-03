@@ -242,9 +242,6 @@ sensors-detect
 # Restart Nautilus
 nautilus -q
 
-# Set home right
-chown -R $USERNAME:$USERNAME $HOME
-
 echo "========================================================================"
 echo
 echo "Liste des logiciels installés: $LISTE"
