@@ -156,6 +156,8 @@ THEME_ICONES=Faience-Dark
 
 # Gnome Shell Extensions
 apt-get install `apt-cache search gnome-shell-extension | awk '{ print $1 }' | xargs`
+# Gnome Shell Extensions: Mint GNOME Shell Extensions (MGSE)
+apt-get install mgse-bottompanel mgse-menu mgse-windowlist
 
 # Gnome Shell Tweak Gnome shell to display icons in the top bar
 git clone https://github.com/rcmorano/gnome-shell-gnome2-notifications.git
