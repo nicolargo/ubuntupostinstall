@@ -13,3 +13,7 @@ Syntaxe (for Ubuntu 11.10 Oneiric / Replace Unity by Gnome Shell):
 Syntaxe (for Ubuntu 11.04 Natty):
 # sudo ./ubuntu-11.04-postinstall.sh
 
+Syntaxe (for Mint 12):
+# sudo ./mint-12-postinstall.sh
+
+
