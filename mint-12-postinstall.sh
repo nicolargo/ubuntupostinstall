@@ -9,7 +9,7 @@
 # Release notes:
 # 1.12.0: Premiere version du script
 #
-VERSION="1.12.0"
+VERSION="1.12.1"
 
 #=============================================================================
 # Liste des applications à installer: A adapter a vos besoins
@@ -18,11 +18,11 @@ LISTE=""
 # Developpement
 LISTE=$LISTE" build-essential vim subversion git git-core rabbitvcs-nautilus anjuta geany geany-plugins"
 # Multimedia
-LISTE=$LISTE" vlc x264 ffmpeg2theora oggvideotools istanbul shotwell mplayer hugin nautilus-image-converter pavucontrol gimp ogmrip transmageddon guvcview wavpack mppenc faac flac vorbis-tools faad lame nautilus-script-audio-convert cheese sound-juicer picard arista nautilus-arista"
+LISTE=$LISTE" vlc x264 ffmpeg2theora oggvideotools istanbul shotwell mplayer hugin nautilus-image-converter pavucontrol ogmrip transmageddon guvcview wavpack mppenc faac flac vorbis-tools faad lame nautilus-script-audio-convert cheese sound-juicer picard arista nautilus-arista"
 # Network
 LISTE=$LISTE" iperf ifstat wireshark tshark arp-scan htop netspeed nmap netpipe-tcp"
 # Systeme
-LISTE=$LISTE" preload gparted lm-sensors compizconfig-settings-manager hardinfo fortune-mod libnotify-bin compiz-fusion-plugins-extra terminator conky-all"
+LISTE=$LISTE" preload lm-sensors hardinfo fortune-mod libnotify-bin terminator conky-all"
 # Web
 LISTE=$LISTE" googleearth-package lsb-core ttf-mscorefonts-installer mint-flashplugin"
 
