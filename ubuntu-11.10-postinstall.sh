@@ -10,7 +10,7 @@
 # 1.2: Add tweak for Gnome Shell (thanks to Makino)
 # 1.0: First release version
 #
-VERSION="1.24"
+VERSION="1.25"
 
 #=============================================================================
 # Liste des applications à installer: A adapter a vos besoins
@@ -131,6 +131,9 @@ add-apt-repository ppa:webupd8team/gnome3
 add-apt-repository ppa:webupd8team/jupiter
 LISTE=$LISTE" jupiter"
 
+# Clipgrab (video converter)
+add-apt-repository ppa:clipgrab-team/ppa
+LISTE=$LISTE" clipgrab"
 
 # Mise a jour 
 #------------
