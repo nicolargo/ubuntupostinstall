@@ -9,7 +9,7 @@
 # Release notes:
 # 1.12.0: Premiere version du script
 #
-VERSION="1.12.1"
+VERSION="1.12.2"
 
 #=============================================================================
 # Liste des applications à installer: A adapter a vos besoins
@@ -18,7 +18,7 @@ LISTE=""
 # Developpement
 LISTE=$LISTE" build-essential vim subversion git git-core rabbitvcs-nautilus anjuta geany geany-plugins"
 # Multimedia
-LISTE=$LISTE" vlc x264 ffmpeg2theora oggvideotools istanbul shotwell mplayer hugin nautilus-image-converter pavucontrol ogmrip transmageddon guvcview wavpack mppenc faac flac vorbis-tools faad lame nautilus-script-audio-convert cheese sound-juicer picard arista nautilus-arista"
+LISTE=$LISTE" vlc x264 ffmpeg2theora oggvideotools istanbul shotwell mplayer hugin nautilus-image-converter pavucontrol ogmrip transmageddon guvcview wavpack mppenc faac flac vorbis-tools faad lame nautilus-script-audio-convert cheese sound-juicer picard arista nautilus-arista mypaint"
 # Network
 LISTE=$LISTE" iperf ifstat wireshark tshark arp-scan htop netspeed nmap netpipe-tcp"
 # Systeme
