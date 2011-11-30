@@ -10,7 +10,7 @@
 # 1.2: Add tweak for Gnome Shell (thanks to Makino)
 # 1.0: First release version
 #
-VERSION="1.25"
+VERSION="1.26"
 
 #=============================================================================
 # Liste des applications à installer: A adapter a vos besoins
@@ -19,7 +19,7 @@ LISTE=""
 # Developpement
 LISTE=$LISTE" build-essential vim subversion git git-core rabbitvcs-nautilus anjuta textadept geany"
 # Multimedia
-LISTE=$LISTE" vlc x264 ffmpeg2theora oggvideotools istanbul shotwell mplayer hugin nautilus-image-converter pavucontrol gimp gimp-save-for-web ogmrip transmageddon guvcview wavpack mppenc faac flac vorbis-tools faad lame nautilus-script-audio-convert cheese sound-juicer picard arista nautilus-arista milkytracker"
+LISTE=$LISTE" vlc x264 ffmpeg2theora oggvideotools istanbul shotwell mplayer hugin nautilus-image-converter pavucontrol gimp gimp-save-for-web ogmrip transmageddon guvcview wavpack mppenc faac flac vorbis-tools faad lame nautilus-script-audio-convert cheese sound-juicer picard arista nautilus-arista milkytracker mypaint"
 # Network
 LISTE=$LISTE" iperf ifstat wireshark tshark arp-scan htop netspeed nmap netpipe-tcp"
 # Systeme
