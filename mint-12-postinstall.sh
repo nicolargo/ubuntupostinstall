@@ -83,7 +83,7 @@ THEME_ICONES=Faience-Dark
 # Gnome Shell Install icons: Faenza, Faience
 apt-get install faenza-icon-theme faenza-icons-mono
 wget http://www.deviantart.com/download/255099649/faience_icon_theme_by_tiheum-d47vo5d.zip
-mkdir $HOME/.themes
+mkdir $HOME/.icons
 unzip faience_icon_theme_by_tiheum-d47vo5d.zip
 mv Faience* $HOME/.icons/
 rm -rf faience_icon_theme_by_tiheum-*.zip
