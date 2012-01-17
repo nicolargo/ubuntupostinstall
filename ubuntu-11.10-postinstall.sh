@@ -233,6 +233,9 @@ wget http://www.fortunes-fr.org/data/sciences
 strfile sciences sciences.dat
 cd -
 
+# Vimrc
+wget -O - https://raw.github.com/vgod/vimrc/master/auto-install.sh | sh
+
 # Custom .bashrc
 cat >> $HOME/.bashrc << EOF
 alias alert_helper='history|tail -n1|sed -e "s/^\s*[0-9]\+\s*//" -e "s/;\s*alert$//"'

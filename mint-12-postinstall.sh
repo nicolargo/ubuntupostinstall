@@ -122,6 +122,9 @@ rm -f GoogleEarth*.deb GoogleEarthLinux.bin
 # Need to read DVD
 sudo sh /usr/share/doc/libdvdread4/install-css.sh
 
+# Vimrc
+wget -O - https://raw.github.com/vgod/vimrc/master/auto-install.sh | sh
+
 # Custom .bashrc
 cat >> $HOME/.bashrc << EOF
 alias la='ls -alF'
