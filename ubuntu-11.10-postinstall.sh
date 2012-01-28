@@ -10,7 +10,7 @@
 # 1.2: Add tweak for Gnome Shell (thanks to Makino)
 # 1.0: First release version
 #
-VERSION="1.26"
+VERSION="1.27"
 
 #=============================================================================
 # Liste des applications à installer: A adapter a vos besoins
@@ -37,15 +37,13 @@ if [ $EUID -ne 0 ]; then
   exit 1
 fi
 
+ADDAPT="add-apt-repository -y"
+
 # Ajout des depots
 #-----------------
 
 UBUNTUVERSION=`lsb_release -cs`
 echo "Ajout des depots pour Ubuntu $UBUNTUVERSION"
-
-# Mon depot a moi
-#add-apt-repository ppa:nicolashennion/ppa
-#LISTE=$LISTE" sjitter"
 
 # Restricted extra
 # The Ubuntu Restricted Extras will install Adobe Flash Player, Java Runtime Environment (JRE) (sun-java-jre) with Firefox plug-ins (icedtea), a set of Microsoft Fonts (msttcorefonts), multimedia codecs (w32codecs or w64codecs), mp3-compatible encoding (lame), FFMpeg, extra Gstreamer codecs, the package for DVD decoding (libdvdread4, but see below for info on libdvdcss2), the unrar archiver, odbc, and cabextract. It also installs multiple "stripped" codecs and avutils (libavcodec-unstripped-52 and libavutil-unstripped-49).
@@ -62,30 +60,30 @@ LISTE=$LISTE" ubuntu-restricted-extras"
 #LISTE=$LISTE" ppasearch"
 
 # GStreamer, daily build
-add-apt-repository ppa:gstreamer-developers
+$ADDAPT ppa:gstreamer-developers
 
 # Shutter, outil de capture d'ecran
-add-apt-repository ppa:shutter
+$ADDAPT ppa:shutter
 LISTE=$LISTE" shutter"
 
 # Chromium, LE navigateur Web (dev-channel PPA)
-add-apt-repository ppa:chromium-daily/dev
+$ADDAPT ppa:chromium-daily/dev
 LISTE=$LISTE" chromium-browser chromium-browser-l10n chromium-codecs-ffmpeg-extra chromium-codecs-ffmpeg-nonfree"
 
 # Wine
-add-apt-repository ppa:ubuntu-wine
+$ADDAPT ppa:ubuntu-wine
 LISTE=$LISTE" wine"
 
 # Ubuntu tweak
-add-apt-repository ppa:tualatrix/ppa
+$ADDAPT ppa:tualatrix/ppa
 LISTE=$LISTE" ubuntu-tweak"
 
 # Hotot
-add-apt-repository ppa:hotot-team
+$ADDAPT ppa:hotot-team
 LISTE=$LISTE" hotot"
 
 # Terminator
-add-apt-repository ppa:gnome-terminator/ppa
+$ADDAPT ppa:gnome-terminator/ppa
 LISTE=$LISTE" terminator"
 
 # GetDeb
@@ -107,11 +105,11 @@ fi
 LISTE=$LISTE" spotify-client-qt"
 
 # WebUpd8 (lots of fresh software)
-add-apt-repository ppa:nilarimogard/webupd8
+$ADDAPT ppa:nilarimogard/webupd8
 LISTE=$LISTE" dropbox-share"
 
 # Gedit Gmate
-apt-add-repository ppa:ubuntu-on-rails/ppa
+$ADDAPT ppa:ubuntu-on-rails/ppa
 LISTE=$LISTE" gedit-gmate"
 
 # VirtualBox 4.1
@@ -125,14 +123,17 @@ fi
 LISTE=$LISTE" virtualbox-4.1 dkms"
 
 # WebUpd8 Gnome3 plugins
-add-apt-repository ppa:webupd8team/gnome3
+$ADDAPT ppa:webupd8team/gnome3
+
+# WebUpd8 Gnome3 themes
+$ADDAPT ppa:webupd8team/themes
 
 # Jupiter (only for Laptop)
-add-apt-repository ppa:webupd8team/jupiter
+$ADDAPT ppa:webupd8team/jupiter
 LISTE=$LISTE" jupiter"
 
 # Clipgrab (video converter)
-add-apt-repository ppa:clipgrab-team/ppa
+$ADDAPT ppa:clipgrab-team/ppa
 LISTE=$LISTE" clipgrab"
 
 # Mise a jour 
