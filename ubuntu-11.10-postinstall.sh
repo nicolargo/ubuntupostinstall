@@ -214,11 +214,11 @@ wget -O $HOME/.conkyrc https://raw.github.com/nicolargo/ubuntupostinstall/master
 
 # GoogleEarth (besoin de generer package)
 make-googleearth-package --force
-sudo dpkg -i GoogleEarth*.deb
+dpkg -i GoogleEarth*.deb
 rm -f GoogleEarth*.deb GoogleEarthLinux.bin
 
 # DVD
-sudo sh /usr/share/doc/libdvdread4/install-css.sh
+sh /usr/share/doc/libdvdread4/install-css.sh
 
 # Fortune
 cd /usr/share/games/fortunes/
@@ -236,6 +236,11 @@ cd -
 
 # Vimrc
 wget -O - https://raw.github.com/vgod/vimrc/master/auto-install.sh | sh
+
+# Terminator
+mkdir -p ~/.config/terminator
+wget -O ~/.config/terminator/config https://raw.github.com/nicolargo/ubuntupostinstall/master/config.terminator
+chown -R $USERNAME:$USERNAME ~/.config/terminator
 
 # Custom .bashrc
 cat >> $HOME/.bashrc << EOF
@@ -259,6 +264,8 @@ echo "========================================================================"
 echo
 echo "Le script doit relancer votre session pour finaliser l'installation."
 echo "Assurez-vous d’avoir fermé tous vos travaux en cours avant de continuer."
+echo "Au démmarrage de la prochaine session, selectionnez Gnome 3"
+echo ""
 echo "Appuyer sur la touche ENTER pour relancer votre session"
 read ANSWER
 service lightdm restart

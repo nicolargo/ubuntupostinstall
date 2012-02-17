@@ -1,7 +1,7 @@
 #!/bin/bash
 # Mon script de "post installation" de GNU/Linux Mint Lisa (Mint version 12)
 #
-# Nicolargo - 11/2011
+# Nicolargo - 02/2012
 # GPL
 #
 # Syntaxe: # sudo ./min-12-postinstall.sh
@@ -9,7 +9,7 @@
 # Release notes:
 # 1.12.0: Premiere version du script
 #
-VERSION="1.12.2"
+VERSION="1.12.3"
 
 #=============================================================================
 # Liste des applications à installer: A adapter a vos besoins
@@ -116,14 +116,19 @@ wget -O $HOME/.conkyrc https://raw.github.com/nicolargo/ubuntupostinstall/master
 
 # GoogleEarth (need packet generation > installation)
 make-googleearth-package --force
-sudo dpkg -i GoogleEarth*.deb
+dpkg -i GoogleEarth*.deb
 rm -f GoogleEarth*.deb GoogleEarthLinux.bin
 
 # Need to read DVD
-sudo sh /usr/share/doc/libdvdread4/install-css.sh
+sh /usr/share/doc/libdvdread4/install-css.sh
 
 # Vimrc
 wget -O - https://raw.github.com/vgod/vimrc/master/auto-install.sh | sh
+
+# Terminator
+mkdir -p ~/.config/terminator
+wget -O ~/.config/terminator/config https://raw.github.com/nicolargo/ubuntupostinstall/master/config.terminator
+chown -R $USERNAME:$USERNAME ~/.config/terminator
 
 # Custom .bashrc
 cat >> $HOME/.bashrc << EOF

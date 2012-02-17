@@ -1,0 +1,26 @@
+[global_config]
+  title_hide_sizetext = True
+[keybindings]
+[profiles]
+  [[default]]
+    background_darkness = 0.99
+    font = Inconsolata Medium 12
+    background_color = "#002b36"
+    show_titlebar = False
+    foreground_color = "#eee8d5"
+  [[b&w]]
+    show_titlebar = False
+    cursor_color = "#599760"
+  [[tiny]]
+    use_system_font = False
+    font = Monospace 8
+    show_titlebar = False
+[layouts]
+  [[default]]
+    [[[child1]]]
+      type = Terminal
+      parent = window0
+    [[[window0]]]
+      type = Window
+      parent = ""
+[plugins]
