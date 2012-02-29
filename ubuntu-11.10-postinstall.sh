@@ -10,7 +10,7 @@
 # 1.2: Add tweak for Gnome Shell (thanks to Makino)
 # 1.0: First release version
 #
-VERSION="1.27"
+VERSION="1.28"
 
 #=============================================================================
 # Liste des applications à installer: A adapter a vos besoins
@@ -135,6 +135,10 @@ LISTE=$LISTE" jupiter"
 # Clipgrab (video converter)
 $ADDAPT ppa:clipgrab-team/ppa
 LISTE=$LISTE" clipgrab"
+
+# Handbrake
+$ADDAPT ppa:stebbins/handbrake-releases
+LISTE=$LISTE" handbrake-gtk handbrake-cli"
 
 # Mise a jour 
 #------------
