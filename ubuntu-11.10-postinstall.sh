@@ -130,7 +130,7 @@ $ADDAPT ppa:webupd8team/themes
 
 # Jupiter (only for Laptop)
 $ADDAPT ppa:webupd8team/jupiter
-LISTE=$LISTE" jupiter"
+LISTE=$LISTE" pyjupiter"
 
 # Clipgrab (video converter)
 $ADDAPT ppa:clipgrab-team/ppa
