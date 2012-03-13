@@ -228,6 +228,9 @@ def main(argv):
 		showexec ("Download the default configuration file", _WGET+" -O "+config_file+" https://raw.github.com/nicolargo/ubuntupostinstall/master/ubuntu-12.04-postinstall.cfg" )		
 	config = ConfigParser.RawConfigParser()
 	config.read(config_file)
+
+	if (config.has_section("gnome3") and config.has_section("unity")):
+		showexec ("Can use both Gnome 3 and Unity, please change your .cfg file", "gnome3etunitygrosboulet", exitonerror = 1)		
 	
 	# Parse and install repositories
 	pkg_list_others = {}
@@ -245,7 +248,7 @@ def main(argv):
 	showexec ("Update repositories", _APT_UPDATE)
 	
 	# Upgrade system
-	showexec ("System upgrade", _APT_UPGRADE)
+	showexec ("System upgrade (please be patient...)", _APT_UPGRADE)
 
 	# Parse and install packages
 	for pkg_type, pkg_list in config.items("packages"):
