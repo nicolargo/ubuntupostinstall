@@ -19,7 +19,7 @@ import os, sys, platform, getopt, shutil, logging, getpass, ConfigParser
 # Global variables
 #-----------------------------------------------------------------------------
 
-_VERSION="0.2"
+_VERSION="0.3a"
 _DEBUG = 0
 _LOG_FILE = "/tmp/ubuntu-12.04-postinstall.log"
 
@@ -274,21 +274,44 @@ def main(argv):
 		# Vim
 		if (config.has_option("dotfiles", "vimrc")):
 			showexec ("Install the Vim configuration file", _WGET+" -O $HOME/.vimrc "+config.get("dotfiles", "vimrc"))
-		
+
+	# Gnome 3 configuration
 	if (config.has_section("gnome3")):
-		# Set the default theme for Gnome Shell
+		# Set the default theme
 		if (config.has_option("gnome3", "theme")):
 			showexec ("Set the default Gnome Shell theme to "+config.get("gnome3", "theme"), "gsettings set org.gnome.desktop.interface gtk-theme "+config.get("gnome3", "theme"))
-		# Set the default icons for Gnome Shell
+		# Set the default icons
 		if (config.has_option("gnome3", "icons")):
 			showexec ("Set the default Gnome Shell icons to "+config.get("gnome3", "icons"), "gsettings set org.gnome.desktop.interface icon-theme "+config.get("gnome3", "icons"))
+		# Set the default cursors
+		if (config.has_option("gnome3", "cursors")):
+			showexec ("Set the default Gnome Shell cursors to "+config.get("gnome3", "cursors"), "gsettings set org.gnome.desktop.interface cursor-theme "+config.get("gnome3", "cursors"))
 		# Download and install the default Conky configuration
 		if (config.has_option("gnome3", "conky")):
 			showexec ("Install the Conky configuration file", _WGET+" -O $HOME/.conkyrc "+config.get("gnome3", "conky"))
-		# Get the minimize and maximize button back in Gnome Shell
+		# Get the minimize/maximize button and ALT-F2 shortcut back
 		showexec ("Get the minimize and maximize button back in Gnome Shell", "gconftool-2 -s -t string /desktop/gnome/shell/windows/button_layout \":minimize,maximize,close\"")
 		showexec ("Get ALT-F2 back to me", "gconftool-2 --recursive-unset /apps/metacity/global_keybindings")
+		# Gnome Shell is the default UI
 		showexec ("Gnome Shell is now the default shell", "/usr/lib/lightdm/lightdm-set-defaults -s gnome-shell")
+
+	# Unity configuration
+	if (config.has_section("unity")):
+		# Set the default theme
+		if (config.has_option("unity", "theme")):
+			showexec ("Set the default Unity theme to "+config.get("unity", "theme"), "gsettings set org.gnome.desktop.interface gtk-theme "+config.get("unity", "theme"))
+		# Set the default icons
+		if (config.has_option("unity", "icons")):
+			showexec ("Set the default Unity icons to "+config.get("unity", "icons"), "gsettings set org.gnome.desktop.interface icon-theme "+config.get("unity", "icons"))
+		# Set the default cursors
+		if (config.has_option("unity", "cursors")):
+			showexec ("Set the default Unity cursors to "+config.get("unity", "cursors"), "gsettings set org.gnome.desktop.interface cursor-theme "+config.get("unity", "cursors"))
+		# Unity is the default UI
+		showexec ("Unity is now the default shell", "/usr/lib/lightdm/lightdm-set-defaults -s unity-3d")
+
+	# Parse and exec post actions
+	for action_name, action_cmd in config.items("postactions"):
+		showexec ("Execute action "+action_name.lstrip("action_"), action_cmd)
 
 	# End of the script
 	print("---")
@@ -296,7 +319,7 @@ def main(argv):
 	print(" - Cfg file: "+config_file)
 	print(" - Log file: "+_LOG_FILE)
 	print("")
-	print("Please restart the session to complete.")
+	print("Please restart your session to complete.")
 	print("---")
 
 # Main program
