@@ -231,6 +231,10 @@ def main(argv):
 
 	if (config.has_section("gnome3") and config.has_section("unity")):
 		showexec ("Can use both Gnome 3 and Unity, please change your .cfg file", "gnome3etunitygrosboulet", exitonerror = 1)		
+
+	# Parse and exec pre-actions
+	for action_name, action_cmd in config.items("preactions"):
+		showexec ("Execute preaction "+action_name.lstrip("action_"), action_cmd)
 	
 	# Parse and install repositories
 	pkg_list_others = {}
@@ -312,9 +316,9 @@ def main(argv):
 		# Unity is the default UI
 		showexec ("Unity is now the default shell", "/usr/lib/lightdm/lightdm-set-defaults -s unity-3d")
 
-	# Parse and exec post actions
+	# Parse and exec post-actions
 	for action_name, action_cmd in config.items("postactions"):
-		showexec ("Execute action "+action_name.lstrip("action_"), action_cmd)
+		showexec ("Execute postaction "+action_name.lstrip("action_"), action_cmd)
 
 	# End of the script
 	print("---")
