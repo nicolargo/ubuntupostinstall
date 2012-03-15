@@ -19,7 +19,7 @@ import os, sys, platform, getopt, shutil, logging, getpass, ConfigParser
 # Global variables
 #-----------------------------------------------------------------------------
 
-_VERSION="0.5a"
+_VERSION="0.5.1a"
 _DEBUG = 1
 _LOG_FILE = "/tmp/ubuntu-12.04-postinstall.log"
 
@@ -222,7 +222,7 @@ def main(argv):
 	# Read the configuration file
 	if (config_file == ""):
 		config_file = "/tmp/ubuntu-12.04-postinstall.cfg"
-		showexec ("Download the default configuration file", "rm -f "+config_file+" ; "_WGET+" -O "+config_file+" https://raw.github.com/nicolargo/ubuntupostinstall/master/ubuntu-12.04-postinstall.cfg" )		
+		showexec ("Download the default configuration file", "rm -f "+config_file+" ; "+_WGET+" -O "+config_file+" https://raw.github.com/nicolargo/ubuntupostinstall/master/ubuntu-12.04-postinstall.cfg" )		
 	config = ConfigParser.RawConfigParser()
 	config.read(config_file)
 
