@@ -19,7 +19,7 @@ import os, sys, platform, getopt, shutil, logging, getpass, ConfigParser
 # Global variables
 #-----------------------------------------------------------------------------
 
-_VERSION="0.4a"
+_VERSION="0.5a"
 _DEBUG = 1
 _LOG_FILE = "/tmp/ubuntu-12.04-postinstall.log"
 
@@ -222,7 +222,7 @@ def main(argv):
 	# Read the configuration file
 	if (config_file == ""):
 		config_file = "/tmp/ubuntu-12.04-postinstall.cfg"
-		showexec ("Download the default configuration file", _WGET+" -O "+config_file+" https://raw.github.com/nicolargo/ubuntupostinstall/master/ubuntu-12.04-postinstall.cfg" )		
+		showexec ("Download the default configuration file", "rm -f "+config_file+" ; "_WGET+" -O "+config_file+" https://raw.github.com/nicolargo/ubuntupostinstall/master/ubuntu-12.04-postinstall.cfg" )		
 	config = ConfigParser.RawConfigParser()
 	config.read(config_file)
 
@@ -239,9 +239,9 @@ def main(argv):
 		if (item_type.startswith("ppa_")):
 			showexec ("Install repository "+item_type.lstrip("ppa_"), _APT_ADD+" "+item_value)
 		elif (item_type.startswith("url_")):
-			showexec ("Install repository "+item_type.lstrip("url_"), _APT_ADD+" \"deb "+item_value+"\"")
+			showexec ("Install repository "+item_type.lstrip("url_"), _APT_ADD+" \\\"deb "+item_value+"\\\"")
 		elif (item_type.startswith("key_")):
-			showexec ("Install key for the "+item_type.lstrip("key_")+" repository", _APT_KEY+item_value)
+			showexec ("Install key for the "+item_type.lstrip("key_")+" repository", _APT_KEY+" "+item_value)
 		elif (item_type.startswith("pkg_")):
 			pkg_list_others[item_type] = item_value
 
