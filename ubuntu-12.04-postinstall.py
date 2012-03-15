@@ -19,7 +19,7 @@ import os, sys, platform, getopt, shutil, logging, getpass, ConfigParser
 # Global variables
 #-----------------------------------------------------------------------------
 
-_VERSION="0.5.1a"
+_VERSION="0.5.2b"
 _DEBUG = 1
 _LOG_FILE = "/tmp/ubuntu-12.04-postinstall.log"
 
@@ -273,8 +273,6 @@ def main(argv):
 			showexec ("Install bash prompt configuration file", _WGET+" -O $HOME/.bashrc.d/bashrc_prompt "+config.get("dotfiles", "bashrc_prompt"))
 		if (config.has_option("dotfiles", "bashrc_aliases")):
 			showexec ("Install bash aliases configuration file", _WGET+" -O $HOME/.bashrc.d/bashrc_aliases "+config.get("dotfiles", "bashrc_aliases"))
-		# Update the shell
-		showexec ("Reload the Bash configuration file", "source $HOME/.bashrc")
 		# Vim
 		if (config.has_option("dotfiles", "vimrc")):
 			showexec ("Install the Vim configuration file", _WGET+" -O $HOME/.vimrc "+config.get("dotfiles", "vimrc"))
