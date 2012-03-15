@@ -19,17 +19,17 @@ import os, sys, platform, getopt, shutil, logging, getpass, ConfigParser
 # Global variables
 #-----------------------------------------------------------------------------
 
-_VERSION="0.3a"
-_DEBUG = 0
+_VERSION="0.4a"
+_DEBUG = 1
 _LOG_FILE = "/tmp/ubuntu-12.04-postinstall.log"
 
 # System commands
 #-----------------------------------------------------------------------------
 
 _APT_ADD = "add-apt-repository -y"
-_APT_INSTALL = "apt-get -y install"
-_APT_UPDATE = "apt-get -y update"
-_APT_UPGRADE = "apt-get -y upgrade"
+_APT_INSTALL = "DEBIAN_FRONTEND=noninteractive apt-get -y -f install"
+_APT_UPDATE = "DEBIAN_FRONTEND=noninteractive apt-get -y update"
+_APT_UPGRADE = "DEBIAN_FRONTEND=noninteractive apt-get -y upgrade"
 _APT_KEY = "apt-key adv --keyserver keyserver.ubuntu.com --recv-keys"
 _WGET = "wget"
 
@@ -194,7 +194,7 @@ def main(argv):
 	Main function
 	"""
 	try:
-		opts, args = getopt.getopt(argv, "c:hvd", ["config", "help", "version", "debug"])
+		opts, args = getopt.getopt(argv, "c:hv", ["config", "help", "version"])
 	except getopt.GetoptError:
 		syntax()
 		exit(2)
@@ -209,9 +209,6 @@ def main(argv):
 		elif opt in ('-v', "--version"):
 			version()
 			exit()
-		elif opt in ('-d', "--debug"):
-			global _DEBUG
-			_DEBUG = 1
 
 	# Are your root ?
 	if (not isroot()):
