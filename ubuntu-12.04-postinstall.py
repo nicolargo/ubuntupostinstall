@@ -19,7 +19,7 @@ import os, sys, platform, getopt, shutil, logging, getpass, ConfigParser
 # Global variables
 #-----------------------------------------------------------------------------
 
-_VERSION="0.5.2b"
+_VERSION="0.5.3b"
 _DEBUG = 1
 _LOG_FILE = "/tmp/ubuntu-12.04-postinstall.log"
 
@@ -130,7 +130,7 @@ def showexec(description, command, exitonerror = 0, presskey = 0, waitmessage = 
 	returncode = os.system ("/bin/sh -c \"%s\" >> /dev/null 2>&1" % command)
 	
 	# Display the result
-	if returncode == 0:
+	if ((returncode == 0) or (returncode == 256000)):
 		status = "[  OK   ]"
 		statuscolor = colors.GREEN
 	else:
@@ -249,7 +249,7 @@ def main(argv):
 	showexec ("Update repositories", _APT_UPDATE)
 	
 	# Upgrade system
-	showexec ("System upgrade (please be patient...)", _APT_UPGRADE)
+	showexec ("System upgrade (~20 mins, please be patient...)", _APT_UPGRADE)
 
 	# Parse and install packages
 	for pkg_type, pkg_list in config.items("packages"):
