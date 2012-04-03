@@ -19,9 +19,10 @@ import os, sys, platform, getopt, shutil, logging, getpass, ConfigParser
 # Global variables
 #-----------------------------------------------------------------------------
 
-_VERSION="0.5.3b"
+_VERSION="0.5.4b"
 _DEBUG = 1
 _LOG_FILE = "/tmp/ubuntu-12.04-postinstall.log"
+_CONF_FILE = "https://raw.github.com/nicolargo/ubuntupostinstall/master/ubuntu-12.04-unity-postinstall.cfg"
 
 # System commands
 #-----------------------------------------------------------------------------
@@ -73,7 +74,25 @@ def syntax():
 	"""
 	Print the script syntax
 	"""
-	print "TODO Syntax..."
+	print "Ubuntu 12.04 post installation script version %s" % _VERSION
+	print ""
+	print "Syntax: ubuntu-12.04-postinstall.py [-c cfgfile] [-h] [-v]"
+	print "  -c cfgfile: Use the cfgfile instead of the default one"
+	print "  -h        : Print the syntax and exit"
+	print "  -v        : Print the version and exit"
+	print ""
+	print "Exemples:"
+	print ""
+	print " # ubuntu-12.04-postinstall.py"
+	print " > Run the script with the default configuration file"
+	print "   %s" % _CONF_FILE
+	print ""
+	print " # ubuntu-12.04-postinstall.py -c ./myconf.cfg"
+	print " > Run the script with the ./myconf.cfg file"
+	print ""
+	print " # ubuntu-12.04-postinstall.py -c http://mysite.com/myconf.cfg"
+	print " > Run the script with the http://mysite.com/myconf.cfg configuration file"
+	print ""
 
 def version():
 	"""
@@ -200,9 +219,15 @@ def main(argv):
 		exit(2)
 
 	config_file = ""
+	config_url = _CONF_FILE
 	for opt, arg in opts:
 		if opt in ("-c", "--config"):
-			config_file = arg
+			if arg.startswith("http://") or \
+				arg.startswith("https://") or \
+				arg.startswith("ftp://"):
+				config_url = arg
+			else:
+				config_file = arg
 		elif opt in ("-h", "--help"):
 			syntax()
 			exit()
@@ -222,7 +247,7 @@ def main(argv):
 	# Read the configuration file
 	if (config_file == ""):
 		config_file = "/tmp/ubuntu-12.04-postinstall.cfg"
-		showexec ("Download the default configuration file", "rm -f "+config_file+" ; "+_WGET+" -O "+config_file+" https://raw.github.com/nicolargo/ubuntupostinstall/master/ubuntu-12.04-postinstall.cfg" )		
+		showexec ("Download the configuration file", "rm -f "+config_file+" ; "+_WGET+" -O "+config_file+" "+config_url)		
 	config = ConfigParser.RawConfigParser()
 	config.read(config_file)
 
