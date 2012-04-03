@@ -277,6 +277,10 @@ def main(argv):
 		if (config.has_option("dotfiles", "vimrc")):
 			showexec ("Install the Vim configuration file", _WGET+" -O $HOME/.vimrc "+config.get("dotfiles", "vimrc"))
 
+		# Htop
+		if (config.has_option("dotfiles", "htoprc")):
+			showexec ("Install the Htop configuration file", _WGET+" -O $HOME/.htoprc "+config.get("dotfiles", "htoprc"))
+
 	# Gnome 3 configuration
 	if (config.has_section("gnome3")):
 		# Set the default theme
