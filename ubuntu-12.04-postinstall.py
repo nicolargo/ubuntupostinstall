@@ -252,7 +252,7 @@ def main(argv):
 	config.read(config_file)
 
 	if (config.has_section("gnome3") and config.has_section("unity")):
-		showexec ("Can use both Gnome 3 and Unity, please change your .cfg file", "gnome3etunitygrosboulet", exitonerror = 1)		
+		showexec ("Can not use both Gnome 3 and Unity, please change your .cfg file", "gnome3etunitygrosboulet", exitonerror = 1)		
 
 	# Parse and exec pre-actions
 	for action_name, action_cmd in config.items("preactions"):
