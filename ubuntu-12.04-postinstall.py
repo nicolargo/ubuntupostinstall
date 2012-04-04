@@ -337,6 +337,9 @@ def main(argv):
 		# Set the default cursors
 		if (config.has_option("unity", "cursors")):
 			showexec ("Set the default Unity cursors to "+config.get("unity", "cursors"), "gsettings set org.gnome.desktop.interface cursor-theme "+config.get("unity", "cursors"))
+		# Download and install the default Conky configuration
+		if (config.has_option("unity", "conky")):
+			showexec ("Install the Conky configuration file", _WGET+" -O $HOME/.conkyrc "+config.get("unity", "conky"))
 		# Unity is the default UI
 		showexec ("Unity is now the default shell", "/usr/lib/lightdm/lightdm-set-defaults -s unity-3d")
 
