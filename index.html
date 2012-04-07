@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset='utf-8'>
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+
+    <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen" />
+    <link rel="stylesheet" type="text/css" href="stylesheets/pygment_trac.css" media="screen" />
+    <link rel="stylesheet" type="text/css" href="stylesheets/print.css" media="print" />
+
+    <title>UbuntuPostInstall by nicolargo</title>
+  </head>
+
+  <body>
+
+    <header>
+      <div class="container">
+        <h1>UbuntuPostInstall</h1>
+        <h2>Post installation script with easy configuration file</h2>
+
+        <section id="downloads">
+          <a href="https://github.com/nicolargo/ubuntupostinstall/zipball/master" class="btn">Download as .zip</a>
+          <a href="https://github.com/nicolargo/ubuntupostinstall/tarball/master" class="btn">Download as .tar.gz</a>
+          <a href="https://github.com/nicolargo/ubuntupostinstall" class="btn btn-github"><span class="icon"></span>View on GitHub</a>
+        </section>
+      </div>
+    </header>
+
+    <div class="container">
+      <section id="main_content">
+        <h1></h1>
+
+<h1>Ubuntu post-installation script</h1>
+
+<p>With this Python script you will avoid wasting time to install and 
+configure your Ubuntu 12.04 operating system. Just download this script, 
+run it with your favorite configuration file and ... envoy !</p>
+
+<p>The script can:</p>
+
+<ul>
+<li>Install Ubuntu repositories (deb repos, PPA, ...)</li>
+<li>Install packages</li>
+<li>Configure dots files (.bashrc, .vimrc, ...)</li>
+<li>Configure the user interface (support Unity and Gnome Shell)</li>
+<li>Run every command line</li>
+</ul><h2>How to use this script ?</h2>
+
+<p>Just download and run it with the following command lines:</p>
+
+<pre><code>$ wget <a href="https://raw.github.com/nicolargo/ubuntupostinstall/master/ubuntu-12.04-postinstall.py">https://raw.github.com/nicolargo/ubuntupostinstall/master/ubuntu-12.04-postinstall.py</a>
+$ chmod a+x ubuntu-12.04-postinstall.py
+$ sudo ./ubuntu-12.04-postinstall.py
+</code></pre>
+
+<p>By default, the script will download and use this configuration file.
+<a href="https://github.com/nicolargo/ubuntupostinstall/blob/master/ubuntu-12.04-unity-postinstall.cfg">https://github.com/nicolargo/ubuntupostinstall/blob/master/ubuntu-12.04-unity-postinstall.cfg</a></p>
+
+<h2>Use anothers configurations files</h2>
+
+<p>Using the -c option, you can select an alternative configuration file.</p>
+
+<p>For example, you can configure Ubuntu for Gnome Shell using:</p>
+
+<pre><code>$ sudo ./ubuntu-12.04-postinstall.py -c <a href="https://raw.github.com/nicolargo/ubuntupostinstall/master/ubuntu-12.04-gnomeshell-postinstall.cfg">https://raw.github.com/nicolargo/ubuntupostinstall/master/ubuntu-12.04-gnomeshell-postinstall.cfg</a>
+</code></pre>
+
+<p>If you want to use a local confgiuration file (adapted to yours needs):</p>
+
+<pre><code>$ sudo ./ubuntu-12.04-postinstall.py -c mycfg.cfg
+</code></pre>
+
+<h2>Create your own configuration file</h2>
+
+<p>The configuration files is organized into sections, and each section 
+can contain name-value pairs for configuration data.</p>
+
+<h3>preactions section</h3>
+
+<p>This is the first section of the configuration file.</p>
+
+<p>A line starting with the action_ string (following by the action name) defines a 
+action (command line) to be executed.</p>
+
+<p>The action name will be displayed during the script execution.</p>
+
+<p>The lines will be executed before all the others steps.</p>
+
+<p>Example:</p>
+
+<pre><code>[preactions]
+action_dummy = dpkg -l &gt; /tmp/pkg-before.txt
+</code></pre>
+
+<p>The dummy action will create a /tmp/pkg-before.txt with a listing of 
+all the packages installed on your system.</p>
+
+<h3>repos section</h3>
+
+<p>In this section, user can install the repositories (deb repository or PPA).</p>
+
+<ul>
+<li>ppa_xxx = ppa:ppauser/ppaname &gt; Add the ppa:ppauser/ppaname to the system</li>
+<li>pkg_xxx = pkglist             &gt; Add the package list (space separed) to the system</li>
+<li>url_xxx = http://reposurl     &gt; Add the repository URL to the system </li>
+<li>key_xxx = key                 &gt; Add the repository key to the system </li>
+</ul><p>xxx define the name of the action and will be displayed during the script execution.</p>
+
+<p>Example:</p>
+
+<pre><code>[repos]
+ppa_glances = ppa:arnaud-hartmann/glances-stable
+pkg_glances = glances
+</code></pre>
+
+<p>Install the Glances PPA on the system and install the glances software.</p>
+
+<h3>packages section</h3>
+
+<p>From this section, you can install all your softwares, gathered by 
+function, needs...</p>
+
+<p>If the item starts with remove_ then packets are uninstalled.</p>
+
+<p>Example:</p>
+
+<pre><code>[packages]
+network = iftop ifstat
+dev = vim git 
+</code></pre>
+
+<p>Install iftop, ifstat, vim and git. Display "Install network packages" and "Install 
+dev packages" during the script execution.</p>
+
+<p>Example:</p>
+
+<pre><code>[packages]
+remove_unuse = eclipse
+</code></pre>
+
+<p>Remove eclipse. Display "Remove unuse" during the script execution. </p>
+
+<h3>dotfiles section</h3>
+
+<p>This section is dedicated to the dot files (.bash, .vimrc...) installed in your 
+home folder. </p>
+
+<p>The script can install the following dot files from URL:</p>
+
+<ul>
+<li>bashrc: BASH main configuration file</li>
+<li>bashrc_prompt: BASH prompt configuration</li>
+<li>bashrc_aliases: BASH aliases</li>
+<li>vimrc: VIM main configuration file</li>
+<li>htoprc: HTOP main configuration file</li>
+</ul><p>Example:</p>
+
+<pre><code>[dotfiles]
+bashrc = <a href="https://raw.github.com/nicolargo/dotfiles/master/bashrc">https://raw.github.com/nicolargo/dotfiles/master/bashrc</a>
+</code></pre>
+
+<p>Create the ~/.bashrc from the <a href="https://raw.github.com/nicolargo/dotfiles/master/bashrc">https://raw.github.com/nicolargo/dotfiles/master/bashrc</a></p>
+
+<h3>unity and gnome3 sections</h3>
+
+<p>Configure Unity or Gnome Shell:</p>
+
+<ul>
+<li>theme: Configure the GTK theme (name)</li>
+<li>icons: Configure the icons theme (name)</li>
+<li>cursors: Configure the cursors theme (name)</li>
+<li>conky: Conky main configuration file (URL)</li>
+</ul><p>For the themes, packages have to be installed in the repos or packages sections.</p>
+
+<pre><code>[gnome3]
+theme = Boomerang
+icons = Faenza
+cursors = DMZ-White
+conky = <a href="https://raw.github.com/nicolargo/ubuntupostinstall/master/conkyrc">https://raw.github.com/nicolargo/ubuntupostinstall/master/conkyrc</a>
+</code></pre>
+
+<p>Configure Gnome Shell with the Boomerang GTK theme, Faenza icons and DMZ-White 
+cursors. Configure Conky with the <a href="https://raw.github.com/nicolargo/ubuntupostinstall/master/conkyrc">https://raw.github.com/nicolargo/ubuntupostinstall/master/conkyrc</a> 
+configuration file.</p>
+
+<p>You can NOT use both unity and gnome3 section in the same .cfg file.</p>
+
+<h3>postactions section</h3>
+
+<p>This is the last section of the configuration file.</p>
+
+<p>A line starting with the action_ string (following by the action name) defines a 
+action (command line) to be executed.</p>
+
+<p>The action name will be displayed during the script execution.</p>
+
+<p>The lines will be executed after all the others steps.</p>
+
+<p>Example:</p>
+
+<pre><code>[postactions]
+action_dummy = dpkg -l &gt; /tmp/pkg-after.txt
+</code></pre>
+
+<p>The dummy action will create a /tmp/pkg-before.txt with a listing of 
+all the packages installed on your system after the script execution.</p>
+
+<h2>Contribute ?</h2>
+
+<p>Need a new function ? </p>
+
+<p>Found a bug ?</p>
+
+<p>Please fill an issue here: <a href="https://github.com/nicolargo/ubuntupostinstall/issues/new">https://github.com/nicolargo/ubuntupostinstall/issues/new</a></p>
+      </section>
+    </div>
+
+    
+  </body>
+</html>
