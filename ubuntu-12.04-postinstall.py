@@ -19,7 +19,7 @@ import os, sys, platform, getopt, shutil, logging, getpass, ConfigParser
 # Global variables
 #-----------------------------------------------------------------------------
 
-_VERSION="0.5.4b"
+_VERSION="0.6b"
 _DEBUG = 1
 _LOG_FILE = "/tmp/ubuntu-12.04-postinstall.log"
 _CONF_FILE = "https://raw.github.com/nicolargo/ubuntupostinstall/master/ubuntu-12.04-unity-postinstall.cfg"
@@ -29,6 +29,7 @@ _CONF_FILE = "https://raw.github.com/nicolargo/ubuntupostinstall/master/ubuntu-1
 
 _APT_ADD = "add-apt-repository -y"
 _APT_INSTALL = "DEBIAN_FRONTEND=noninteractive apt-get -y -f install"
+_APT_REMOVE = "DEBIAN_FRONTEND=noninteractive apt-get -y -f remove"
 _APT_UPDATE = "DEBIAN_FRONTEND=noninteractive apt-get -y update"
 _APT_UPGRADE = "DEBIAN_FRONTEND=noninteractive apt-get -y upgrade"
 _APT_KEY = "apt-key adv --keyserver keyserver.ubuntu.com --recv-keys"
@@ -149,7 +150,7 @@ def showexec(description, command, exitonerror = 0, presskey = 0, waitmessage = 
 	returncode = os.system ("/bin/sh -c \"%s\" >> /dev/null 2>&1" % command)
 	
 	# Display the result
-	if ((returncode == 0) or (returncode == 256000)):
+	if ((returncode == 0) or (returncode == 25600)):
 		status = "[  OK   ]"
 		statuscolor = colors.GREEN
 	else:
@@ -278,7 +279,10 @@ def main(argv):
 
 	# Parse and install packages
 	for pkg_type, pkg_list in config.items("packages"):
-		showexec ("Install packages "+pkg_type, _APT_INSTALL+" "+pkg_list)
+        if (pkg_type.startswith("remove_")):
+            showexec ("Remove packages "+pkg_type.lstrip("remove_"), _APT_REMOVE+" "+pkg_list)
+        elif:
+            showexec ("Install packages "+pkg_type, _APT_INSTALL+" "+pkg_list)
 	
 	# Install packages related to repositories
 	#~ print pkg_list_others

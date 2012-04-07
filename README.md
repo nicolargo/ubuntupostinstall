@@ -85,6 +85,8 @@ Install the Glances PPA on the system and install the glances software.
 From this section, you can install all your softwares, gathered by 
 function, needs...
 
+If the item starts with remove_ then packets are uninstalled.
+
 Example:
 
     [packages]
@@ -93,6 +95,13 @@ Example:
 
 Install iftop, ifstat, vim and git. Display "Install network packages" and "Install 
 dev packages" during the script execution.
+
+Example:
+
+    [packages]
+    remove_unuse = eclipse
+
+Remove eclipse. Display "Remove unuse" during the script execution. 
 
 ### dotfiles section
 
