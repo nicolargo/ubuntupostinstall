@@ -279,10 +279,10 @@ def main(argv):
 
 	# Parse and install packages
 	for pkg_type, pkg_list in config.items("packages"):
-        if (pkg_type.startswith("remove_")):
-            showexec ("Remove packages "+pkg_type.lstrip("remove_"), _APT_REMOVE+" "+pkg_list)
-        elif:
-            showexec ("Install packages "+pkg_type, _APT_INSTALL+" "+pkg_list)
+		if (pkg_type.startswith("remove_")):
+		    showexec ("Remove packages "+pkg_type.lstrip("remove_"), _APT_REMOVE+" "+pkg_list)
+		else:
+		    showexec ("Install packages "+pkg_type, _APT_INSTALL+" "+pkg_list)
 	
 	# Install packages related to repositories
 	#~ print pkg_list_others
