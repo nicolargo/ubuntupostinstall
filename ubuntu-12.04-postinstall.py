@@ -26,7 +26,7 @@ import ConfigParser
 # Global variables
 #-----------------------------------------------------------------------------
 
-_VERSION = "0.7"
+_VERSION = "0.7.1"
 _DEBUG = 1
 _LOG_FILE = "/tmp/ubuntu-12.04-postinstall.log"
 _CONF_FILE = "https://raw.github.com/nicolargo/ubuntupostinstall/master/ubuntu-12.04-unity-postinstall.cfg"
@@ -314,36 +314,40 @@ def main(argv):
         # Create the bashrc.d subfolder
         showexec ("Create the ~/.bashrc.d subfolder", "mkdir -p $HOME/.bashrc.d")
         if (config.has_option("dotfiles", "bashrc")):
-            showexec ("Install bash main configuration file", _WGET+" -O $HOME/.bashrc "+config.get("dotfiles", "bashrc"))
+            showexec ("Download bash main configuration file", _WGET+" -O $HOME/.bashrc "+config.get("dotfiles", "bashrc"))
         if (config.has_option("dotfiles", "bashrc_prompt")):
-            showexec ("Install bash prompt configuration file", _WGET+" -O $HOME/.bashrc.d/bashrc_prompt "+config.get("dotfiles", "bashrc_prompt"))
+            showexec ("Download bash prompt configuration file", _WGET+" -O $HOME/.bashrc.d/bashrc_prompt "+config.get("dotfiles", "bashrc_prompt"))
         if (config.has_option("dotfiles", "bashrc_aliases")):
-            showexec ("Install bash aliases configuration file", _WGET+" -O $HOME/.bashrc.d/bashrc_aliases "+config.get("dotfiles", "bashrc_aliases"))
+            showexec ("Download bash aliases configuration file", _WGET+" -O $HOME/.bashrc.d/bashrc_aliases "+config.get("dotfiles", "bashrc_aliases"))
+        showexec ("Install the bash configuration file", "chown -R $USERNAME:$USERNAME $HOME/.bashrc*")
         # Vim
         if (config.has_option("dotfiles", "vimrc")):
-            showexec ("Install the Vim configuration file", _WGET+" -O $HOME/.vimrc "+config.get("dotfiles", "vimrc"))
+            showexec ("Donwload the Vim configuration file", _WGET+" -O $HOME/.vimrc "+config.get("dotfiles", "vimrc"))
+            showexec ("Install the Vim configuration file", "chown -R $USERNAME:$USERNAME $HOME/.vimrc")
 
         # Htop
         if (config.has_option("dotfiles", "htoprc")):
-            showexec ("Install the Htop configuration file", _WGET+" -O $HOME/.htoprc "+config.get("dotfiles", "htoprc"))
+            showexec ("Download the Htop configuration file", _WGET+" -O $HOME/.htoprc "+config.get("dotfiles", "htoprc"))
+            showexec ("Install the Htop configuration file", "chown -R $USERNAME:$USERNAME $HOME/.htoprc")
 
     # Gnome 3 configuration
     if (config.has_section("gnome3")):
         # Set the default theme
         if (config.has_option("gnome3", "theme")):
-            showexec ("Set the default Gnome Shell theme to "+config.get("gnome3", "theme"), "gsettings set org.gnome.desktop.interface gtk-theme "+config.get("gnome3", "theme"))
+            showexec ("Set the default Gnome Shell theme to "+config.get("gnome3", "theme"), "sudo -u $USERNAME gsettings set org.gnome.desktop.interface gtk-theme "+config.get("gnome3", "theme"))
         # Set the default icons
         if (config.has_option("gnome3", "icons")):
-            showexec ("Set the default Gnome Shell icons to "+config.get("gnome3", "icons"), "gsettings set org.gnome.desktop.interface icon-theme "+config.get("gnome3", "icons"))
+            showexec ("Set the default Gnome Shell icons to "+config.get("gnome3", "icons"), "sudo -u $USERNAME gsettings set org.gnome.desktop.interface icon-theme "+config.get("gnome3", "icons"))
         # Set the default cursors
         if (config.has_option("gnome3", "cursors")):
-            showexec ("Set the default Gnome Shell cursors to "+config.get("gnome3", "cursors"), "gsettings set org.gnome.desktop.interface cursor-theme "+config.get("gnome3", "cursors"))
+            showexec ("Set the default Gnome Shell cursors to "+config.get("gnome3", "cursors"), "sudo -u $USERNAME gsettings set org.gnome.desktop.interface cursor-theme "+config.get("gnome3", "cursors"))
         # Download and install the default Conky configuration
         if (config.has_option("gnome3", "conky")):
-            showexec ("Install the Conky configuration file", _WGET+" -O $HOME/.conkyrc "+config.get("gnome3", "conky"))
+            showexec ("Download the Conky configuration file", _WGET+" -O $HOME/.conkyrc "+config.get("gnome3", "conky"))
+            showexec ("Install the Conky configuration file", "chown -R $USERNAME:$USERNAME $HOME/.conkyrc")
         # Get the minimize/maximize button and ALT-F2 shortcut back
-        showexec ("Get the minimize and maximize button back in Gnome Shell", "gconftool-2 -s -t string /desktop/gnome/shell/windows/button_layout \":minimize,maximize,close\"")
-        showexec ("Get ALT-F2 back to me", "gconftool-2 --recursive-unset /apps/metacity/global_keybindings")
+        showexec ("Get the minimize and maximize button back in Gnome Shell", "sudo -u $USERNAME gconftool-2 -s -t string /desktop/gnome/shell/windows/button_layout \":minimize,maximize,close\"")
+        showexec ("Get ALT-F2 back to me", "sudo -u $USERNAME gconftool-2 --recursive-unset /apps/metacity/global_keybindings")
         # Gnome Shell is the default UI
         showexec ("Gnome Shell is now the default shell", "/usr/lib/lightdm/lightdm-set-defaults -s gnome-shell")
 
