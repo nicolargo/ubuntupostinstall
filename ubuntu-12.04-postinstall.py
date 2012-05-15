@@ -276,6 +276,8 @@ def main(argv):
     for action_name, action_cmd in config.items("preactions"):
         showexec ("Execute preaction "+action_name.lstrip("action_"), action_cmd)
     
+    exit(0)
+    
     # Parse and install repositories
     pkg_list_others = {}
     for item_type, item_value in config.items("repos"):
