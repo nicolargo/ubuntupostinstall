@@ -329,6 +329,11 @@ def main(argv):
         if (config.has_option("dotfiles", "htoprc")):
             showexec ("Download the Htop configuration file", _WGET+" -O $HOME/.htoprc "+config.get("dotfiles", "htoprc"))
             showexec ("Install the Htop configuration file", "chown -R $USERNAME:$USERNAME $HOME/.htoprc")
+        
+        # Pythonrc
+        if (config.has_option("dotfiles", "pythonrc")):
+            showexec ("Download the Pythonrc configuration file", _WGET+" -O $HOME/.pythonrc "+config.get("dotfiles", "pythonrc"))
+            showexec ("Install the Pythonrc configuration file", "chown -R $USERNAME:$USERNAME $HOME/.pythonrc")
 
     # Gnome 3 configuration
     if (config.has_section("gnome3")):
