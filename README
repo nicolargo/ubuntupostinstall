@@ -6,7 +6,7 @@ Ubuntu post-installation script
 ===============================
 
 With this Python script you will avoid wasting time to install and 
-configure your Ubuntu 12.10 operating system. Just download this script, 
+configure your Ubuntu operating system. Just download this script, 
 run it with your favorite configuration file and ... envoy !
 
 The script can:
@@ -21,12 +21,12 @@ The script can:
 
 Just download and run it with the following command lines:
 
-    $ wget https://raw.github.com/nicolargo/ubuntupostinstall/master/ubuntu-12.10-postinstall.py
-    $ chmod a+x ubuntu-12.10-postinstall.py
-    $ sudo ./ubuntu-12.10-postinstall.py
+    $ wget https://raw.github.com/nicolargo/ubuntupostinstall/master/ubuntu-13.04-postinstall.py
+    $ chmod a+x ubuntu-13.04-postinstall.py
+    $ sudo ./ubuntu-13.04-postinstall.py
 
 By default, the script will download and use this configuration file.
-https://github.com/nicolargo/ubuntupostinstall/blob/master/ubuntu-12.10-unity-postinstall.cfg
+https://github.com/nicolargo/ubuntupostinstall/blob/master/ubuntu-13.04-unity-postinstall.cfg
 
 ## Use anothers configurations files
 
@@ -34,11 +34,11 @@ Using the -c option, you can select an alternative configuration file.
 
 For example, you can configure Ubuntu for Gnome Shell using:
 
-    $ sudo ./ubuntu-12.10-postinstall.py -c https://raw.github.com/nicolargo/ubuntupostinstall/master/ubuntu-12.10-gnomeshell-postinstall.cfg
+    $ sudo ./ubuntu-13.04-postinstall.py -c https://raw.github.com/nicolargo/ubuntupostinstall/master/ubuntu-13.04-gnomeshell-postinstall.cfg
 
-If you want to use a local confgiuration file (adapted to yours needs):
+If you want to use a local configuration file (adapted to yours needs):
 
-    $ sudo ./ubuntu-12.10-postinstall.py -c mycfg.cfg
+    $ sudo ./ubuntu-13.04-postinstall.py -c mycfg.cfg
 
 ## Create your own configuration file
 
