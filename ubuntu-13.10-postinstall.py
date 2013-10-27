@@ -33,7 +33,7 @@ gettext.install(__appname__)
 # Global variables
 #-----------------------------------------------------------------------------
 
-_FOR_UBUNTU = "raring"
+_FOR_UBUNTU = "saucy"
 _DEBUG = 1
 _LOG_FILE = "/tmp/%s.log" % __appname__
 _CONF_FILE = "https://raw.github.com/nicolargo/ubuntupostinstall/master/ubuntu-13.10-unity-postinstall.cfg"
