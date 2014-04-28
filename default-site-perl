@@ -1,0 +1,43 @@
+server {
+	listen       80;
+        server_name  localhost;
+        root         /var/www;
+
+        # Static
+        location / {
+            index  index.html index.htm index.php;
+        }
+
+        # PHP scripts -> PHP-FPM server listening on 127.0.0.1:9000
+        location ~ \.php$ {
+                 fastcgi_pass   127.0.0.1:9000;
+                 fastcgi_index  index.php;
+                 include fastcgi_params;
+                 fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;
+        }
+
+	# Perl scripts -> FastCGI Wrapper listen on 127.0.0.1:8999
+	location ~ \.pl$ {
+		fastcgi_pass 127.0.0.1:8999;
+		include /etc/nginx/fastcgi_params;
+		fastcgi_index index.pl;
+	}
+	
+        # Security
+        location ~ /\.ht {
+            deny  all;
+        }
+
+	# Stuffs
+	location = /favicon.ico {
+		access_log	 off;
+		return	 204;
+	}
+
+	location ~* ^.+\.(jpg|jpeg|gif|css|png|js|xml)$ {
+		expires 	30d;
+		#access_log	off;
+		#set		$memcached_key $uri;
+		#memcached_pass 	127.0.0.1:11211;
+	}
+}

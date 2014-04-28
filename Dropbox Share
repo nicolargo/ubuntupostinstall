@@ -1,0 +1,15 @@
+#!/bin/bash
+
+#LOCATION="$HOME"/Dropbox/Public
+LOCATION="`cat ~/.dropbox/host.db | sed -n 2p | base64 -d`/Public"
+
+IFS=$'\n'
+for FILENAME in $NAUTILUS_SCRIPT_SELECTED_FILE_PATHS
+do
+       DROPBOXFILE=`echo $FILENAME | awk -F/ '{print $NF}'`
+       ln -s "$FILENAME" "$LOCATION"/
+       list="$list `dropbox puburl "$LOCATION"/"$DROPBOXFILE"`"
+done
+echo -n $list | xclip -selection clipboard
+zenity --info --title="Shared into Dropbox" --text="Here is the public URL (also in your clipboard):\n\n"$list"\n"
+

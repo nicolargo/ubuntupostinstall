@@ -1,0 +1,14 @@
+#!/bin/bash
+
+#LOCATION="$HOME"/Dropbox/Public
+LOCATION="`cat ~/.dropbox/host.db | sed -n 2p | base64 -d`/Public"
+
+IFS=$'\n'
+for FILENAME in $NAUTILUS_SCRIPT_SELECTED_FILE_PATHS
+do
+       DROPBOXFILE=`echo $FILENAME | awk -F/ '{print $NF}'`
+       rm -f "$LOCATION"/"$DROPBOXFILE"
+       list="$list $LOCATION/$DROPBOXFILE"
+done
+zenity --info --title="UnShared from Dropbox" --text="The following file have been unshared:\n\n"$list"\n"
+
