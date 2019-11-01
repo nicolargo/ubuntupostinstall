@@ -12,7 +12,7 @@ Mako==0.8.1
 MarkupSafe==0.15
 Nautilus-scripts-manager==1.7
 PAM==0.4.2
-Pillow==2.0.0
+Pillow==6.2.0
 PyBluez==0.18
 PyOpenGL==3.0.1
 PyRSS2Gen==1.1
