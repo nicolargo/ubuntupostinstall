@@ -18,7 +18,7 @@ PyOpenGL==3.0.1
 PyRSS2Gen==1.1
 PySensors==0.0.2
 PyYAML==3.10
-Pygments==1.6
+Pygments==2.7.4
 SQLAlchemy==0.7.10
 SecretStorage==1.0.0
 Sphinx==1.1.3
