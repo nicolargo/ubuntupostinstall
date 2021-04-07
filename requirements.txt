@@ -37,7 +37,7 @@ async==0.6.1
 batinfo==0.1.7
 beautifulsoup4==4.3.2
 boto==2.9.6
-bottle==0.11.1
+bottle==0.12.19
 bzr==2.6.0
 ccsm==0.9.10.2
 chardet==2.0.1
