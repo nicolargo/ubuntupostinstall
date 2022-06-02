@@ -62,7 +62,7 @@ gitchangelog==1.0.1
 gitdb==0.5.4
 gitflow==0.5.1
 google==1.05
-html5lib==0.99
+html5lib==0.99999999
 httplib2==0.18.0
 iotop==0.6
 ipython==0.13.2
