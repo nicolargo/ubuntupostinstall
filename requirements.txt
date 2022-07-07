@@ -131,7 +131,7 @@ pyxdg==0.25
 rabbitvcs==0.15.2
 redis==2.4.13
 reportlab==2.6
-requests==0.14.2
+requests==2.20.0
 rhythmbox-ubuntuone==13.10
 roman==1.4.0
 scipy==0.12.0
