@@ -5,7 +5,7 @@ Fabric==1.4.3
 Flask==0.10.1
 FlexGet==1.1
 GitPython==0.3.2.RC1
-Glances==1.7.2
+Glances==3.2.1
 GnuPGInterface==0.3.2
 Jinja2==2.7
 Mako==1.2.2
