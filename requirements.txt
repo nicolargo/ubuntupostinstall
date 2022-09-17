@@ -8,7 +8,7 @@ GitPython==0.3.2.RC1
 Glances==1.7.2
 GnuPGInterface==0.3.2
 Jinja2==2.7
-Mako==0.8.1
+Mako==1.2.2
 MarkupSafe==0.15
 Nautilus-scripts-manager==1.7
 PAM==0.4.2
