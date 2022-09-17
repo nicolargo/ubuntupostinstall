@@ -130,7 +130,7 @@ pytz==2013.9
 pyxdg==0.26
 rabbitvcs==0.15.2
 redis==2.4.13
-reportlab==2.6
+reportlab==3.5.55
 requests==2.20.0
 rhythmbox-ubuntuone==13.10
 roman==1.4.0
