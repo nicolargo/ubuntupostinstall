@@ -65,7 +65,7 @@ google==1.05
 html5lib==0.999999999
 httplib2==0.18.0
 iotop==0.6
-ipython==0.13.2
+ipython==7.16.3
 itsdangerous==0.23
 jockey==0.9.7
 jsonschema==2.3.0
