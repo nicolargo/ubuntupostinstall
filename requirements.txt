@@ -7,7 +7,7 @@ FlexGet==1.1
 GitPython==0.3.2.RC1
 Glances==3.2.1
 GnuPGInterface==0.3.2
-Jinja2==2.7
+Jinja2==2.11.3
 Mako==1.2.2
 MarkupSafe==0.15
 Nautilus-scripts-manager==1.7
