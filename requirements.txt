@@ -19,7 +19,7 @@ PyRSS2Gen==1.1
 PySensors==0.0.2
 PyYAML==5.4
 Pygments==2.7.4
-SQLAlchemy==0.7.10
+SQLAlchemy==1.3.0
 SecretStorage==1.0.0
 Sphinx==1.1.3
 ThePirateBay==1.3.0
