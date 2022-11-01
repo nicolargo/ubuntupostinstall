@@ -94,7 +94,7 @@ pexpect==2.4
 piston-mini-client==0.7.5
 pp==1.6.2
 progressbar==2.3
-protobuf==3.15.0
+protobuf==3.18.3
 psutil==5.6.6
 purl==0.8
 pyOpenSSL==17.5.0
