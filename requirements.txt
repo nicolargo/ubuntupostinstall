@@ -28,7 +28,7 @@ Twisted-Names==13.0.0
 Twisted-Web==13.0.0
 URLObject==2.3.4
 UniConvertor==1.1.4
-Werkzeug==0.15.3
+Werkzeug==0.15.5
 adium-theme-ubuntu==0.3.3
 apt-xapian-index==0.45
 argparse==1.2.1
