@@ -2,7 +2,7 @@ BeautifulSoup==3.2.1
 CherryPy==3.2.2
 Cython==0.17.2
 Fabric==1.4.3
-Flask==1.0
+Flask==2.3.2
 FlexGet==1.1
 GitPython==0.3.2.RC1
 Glances==3.2.1
